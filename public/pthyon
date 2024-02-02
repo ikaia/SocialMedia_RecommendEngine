@@ -1,0 +1,165 @@
+
+
+
+
+#import the tello drone library
+import time
+from djitellopy import Tello
+import sys
+import cv2
+from threading import Thread
+
+
+from pylsl import StreamInlet, resolve_stream
+
+
+# Initialize drone connection
+drone = Tello()
+drone.connect()
+
+
+# End with land
+
+
+drone.takeoff()
+time.sleep(1)
+
+
+
+
+
+
+
+
+def main():
+  # first resolve an Motion stream on the lab network
+  print("looking for a Motion stream...")
+  streams = resolve_stream('type', 'Motion')
+
+
+
+
+  # create a new inlet to read from the stream
+  inlet = StreamInlet(streams[0])
+
+
+
+
+
+
+   # Initialize drone connection
+  drone = Tello()
+  drone.connect()
+
+
+   # End with land
+
+
+  drone.takeoff()
+
+
+
+   # the loop thats reciveing the data from the headset (recording the sample)
+  x = 0
+  data = []
+  # While loop needed for lsl datastream
+  # continues indefinitely unless terminated
+  while True:
+      # get a new sample (you can also omit the timestamp part if you're not
+      # interested in it)
+      sample, timestamp = inlet.pull_sample()
+      # recording headset time series sample to the data matrix (deltating theses colums of the matrix to just get the gryscope data MOT.QO)
+      data.append(sample)
+      del data[x][12]
+      del data[x][11]
+      del data[x][10]
+      del data[x][9]
+      del data[x][8]
+      del data[x][7]
+      del data[x][2]
+      del data[x][1]
+      del data[x][0]
+      # x serves as a counter for the program to terminate at 100 samples (adjust as needed)
+      x = x+1
+      #modify x number to no of samples for 3 seconds
+      if(x>100):
+          #The Functions for classifying head movements
+          # Initialize i to start at 0
+          # dIVIDING THE GRYSCOPE into diffrenet matrixes
+          i = 0
+          data0=data[0][0]
+          data1=data[0][1]
+          data2=data[0][2]
+          data3=data[0][3]
+          # The while loop is to go through each recording sample in the rows and find the highest mot.q0 for each recording BY COMPARE IT TO ITSELF BY 100 TIMES
+          while i < 100:
+              if data[i][0]>data0:
+                  data0 = data[i][0]
+              if data[i][1]>data1:
+                  data1 = data[i][1]
+              if data[i][2]>data2:
+                  data2 = data[i][2]
+              if data[i][3]>data3:
+                  data3 = data[i][3]
+              i=i+1
+
+
+
+
+              # Call the identify_head_movement function with the appropriate data values
+
+
+
+          if 0.70 <= data0 <= 0.99:
+              print(data0)
+              print("Left Head Movement")
+              drone.move_left(40)
+          elif 0.40 <= data0 <= 0.90: #and 0.10 <= data1 <= 0.25:
+              print(data0)
+              print(data1)
+              print (data2)
+              print("Forward Head Movement")
+              drone.move_forward(40)
+          elif 0.01 <= data0 <= 0.40:
+              print(data0)
+              print("Right Head Movement")
+              drone.move_right(40)
+          else:
+              print(data0)
+              print("Still")
+
+
+
+              # prints whole matrix
+              #print(data, 'n/')
+              # prints second value of the first row in the matrix
+              #print(data)
+
+
+
+
+          # have it classify the head movement and send drone command here
+
+
+
+
+          x=0 # resetting the counter and the recording
+          data=[]
+          # breaks the loop and terminates the program
+          continue# replace the break with a continue
+          # The Functions for classifying head movements
+
+drone.land()
+
+
+
+
+
+
+if __name__ == '__main__':
+  main()
+
+
+
+
+// Forward, Still, Left, Right Head Movement works good

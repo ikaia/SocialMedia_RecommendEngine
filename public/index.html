@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fast and Furry-ous</title>
+    <!-- Bootstrap Style Sheet Imported and URL -->
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="/js/application.js" defer></script>
+    <script src="scripts.js"></script>
+</head>
+<style>
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+  }
+  h1 {
+            font-size: 3em; /*BIG Font*/
+            
+        }
+       
+</style>
+<body>
+    <!--Navigation Bar Copied and Pasted From Bootstrap -->
+    <nav class="navbar" style="background-color: #f4f4f4;">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Wiki</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                    aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Favorites
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" aria-disabled="true">Login</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </nav>
+    <header>
+        <h1>The Characters Site Page</h1>
+      <p class>Author(s): Ikaia Melton (CSS), Shawn Han (Favorities), Alex Collins (Fliters)</p>
+    </header>
+
+    <!-- Character Cards Section Container From Bootstrap -->
+    <div class="container mt-5">
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="characterCardsContainer">
+            <!-- Character Card Displays Here -->
+            <div id="topmatter"></div>
+            <div id="bottommatter"></div>
+            <nav class="navbar" style="background-color: #ffffff;"></nav> <!--A white cube to push down the cards-->
+        </div>
+    </div>
+<!-- Modal for displaying the larger card bootsrap-->
+<div class="modal fade" id="cardModal" tabindex="-1" role="dialog" aria-labelledby="cardModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+ <!-- Bootstrap JS Scripts -->
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+
+        
