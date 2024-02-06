@@ -115,7 +115,7 @@ function showLargerCard(element) {
     <span aria-hidden="true">&times;</span>
   </button> 
         <img src="img/${element.image}" style="width: 300px; height: 300px; object-fit: cover;">
-        class="img-fluid" alt="${element.name}">
+        <class="img-fluid" alt="${element.name}">
         <h2>${element.name}</h2>
         <p>${element.desc}</p>
     `;
