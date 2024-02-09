@@ -1,8 +1,8 @@
 Computer Science Capstone Class Term Project
 
 Team Memebers: 
+Ikaia Melton (my template)
 Crystal Byrd 
-Ikaia Melton 
 Michael Minnick 
 Tim McCarty
 
