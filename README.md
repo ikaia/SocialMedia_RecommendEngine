@@ -1,9 +1,9 @@
 Computer Science Capstone Class Term Project
 
 Team Memebers: 
-Ikaia Melton (my template)
-Crystal Byrd 
-Michael Minnick 
+Ikaia Melton (my template👑)
+Crystal Byrd,
+Michael Minnick, 
 Tim McCarty
 
 How to use on local machine: npm install ( for node_modules excluded in commits) npm install -g nodemon (
