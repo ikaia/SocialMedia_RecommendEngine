@@ -1,6 +1,6 @@
 [
-    {"id": 10, "url": "/Dog", "name": "Dog", "desc": "Dogs make wonderful pets due to their loyalty, affectionate nature, and the joy they bring to households with their playful antics.", "image":"/Dog.jpg"},
-    {"id": 11, "url": "/Cat", "name": "Cat", "desc": "Cats are fantastic pets, known for their independent yet affectionate demeanor and their ability to bring comfort and companionship to their owners.", "image":"/Cat.jpg"},
+   {"id": 10, "url": "https://youtu.be/nV_hd6bLXmw?si=TKaSts1AQu_yLpop", "name": "Dog", "desc": "Dogs make wonderful pets due to their loyalty, affectionate nature, and the joy they bring to households with their playful antics.", "image":"/Dog.jpg"},
+    {"id": 11, "url": "https://youtu.be/X_qfq_xGVwE?si=A44PjFLpTtke7hLy", "name": "Cat", "desc": "Cats are fantastic pets, known for their independent yet affectionate demeanor and their ability to bring comfort and companionship to their owners.", "image":"/Cat.jpg"},
     {"id": 12, "url": "/Duck", "name": "Duck", "desc": "Ducks can be delightful pets, offering charming quirkiness and a friendly presence that brings joy to those who appreciate their unique characteristics.", "image":"/Duck.jpg"},
     {"id": 7, "url": "/jett", "name": "Jett", "desc": "Jett is a character from a game named Valorant</br>She is Korean and has power to control wind.", "image":"/Jett1.jpg"},
     {"id": 8, "url": "/johnWick", "name": "John Wick", "desc": "John Wick is a character from a movie called John Wick</br>John Wick is a formal legendary hitman who retired to be with his wife.</br>His wife passed away from terminal illness. Leaving a puppy for John", "image":"/JohnWick2.jpg"},
