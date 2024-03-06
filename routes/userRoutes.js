@@ -1,11 +1,11 @@
-// userRoutes.js
-
+require('dotenv').config();
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt');
 const users = require('../application/data/mockUserData');
 
-router.post('/register', async (req, res) => {
+
+
+router.post('/register', (req, res) => {
     try {
         const { username, email, password } = req.body;
         // Check if user with the same email already exists
@@ -13,14 +13,12 @@ router.post('/register', async (req, res) => {
         if (existingUser) {
             return res.status(400).json({ error: 'Email already exists' });
         }
-        // Hash the password
-        const hashedPassword = await bcrypt.hash(password, 10);
         // Create user object
         const newUser = {
             id: users.length + 1, // Generate new user ID
             username,
             email,
-            password: hashedPassword,
+            password, // Store plain-text password
         };
         // Add new user to mock database
         users.push(newUser);
@@ -31,7 +29,10 @@ router.post('/register', async (req, res) => {
     }
 });
 
-router.post('/login', async (req, res) => {
+
+router.post('/login', (req, res) => {
+
+    const secretKey = process.env.SECRET_KEY;
     try {
         const { email, password } = req.body;
         // Find user by email
@@ -39,16 +40,19 @@ router.post('/login', async (req, res) => {
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
-        // Compare passwords
-        const passwordMatch = await bcrypt.compare(password, user.password);
-        if (!passwordMatch) {
+        // Compare passwords 
+        if (user.password !== password) {
             return res.status(401).json({ error: 'Invalid password' });
         }
+        const token = jwt.sign({ userId: user.id, userEmail: user.email }, secretKey);
+        // Send token and message in response 
+        res.json({ token });
         res.json({ message: 'Login successful' });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Failed to login' });
     }
 });
+
 
 module.exports = router;
