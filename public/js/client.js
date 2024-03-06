@@ -1,4 +1,30 @@
 
+async function login(email, password) {
+    try {
+        const response = await fetch('/user/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        });
+        const data = await response.json();
+        
+        // Store tokens in local storage
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('refreshToken', data.refreshToken);
+        
+        console.log('Login successful');
+        
+        // Call handleTokenExpiration after login
+        handleTokenExpiration();
+    } catch (error) {
+        console.error('Login failed:', error);
+    }
+}
+
+
+
 // Function to refresh token
 async function refreshToken(refreshToken) {
     try {
@@ -32,5 +58,5 @@ async function handleTokenExpiration() {
     }
 }
 
-// Call handleTokenExpiration on app startup or wherever token expiration needs to be handled
-handleTokenExpiration();
+
+setInterval(handleTokenExpiration, 60000); 

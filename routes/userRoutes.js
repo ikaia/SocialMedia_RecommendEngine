@@ -4,7 +4,9 @@ const bcrypt = require('bcryptjs');
 const express = require('express');
 const router = express.Router();
 const path = require('path');
+const fs = require('fs');
 const users = require(path.join(__dirname, '../application/data/mockUserData.json'));
+
 
 
 router.post('/register', (req, res) => {
@@ -20,7 +22,7 @@ router.post('/register', (req, res) => {
             id: users.length + 1, // Generate new user ID
             username,
             email,
-            password, // Store plain-text password
+            password, // Store plain-text password will change later
         };
         // Add new user to mock database
         users.push(newUser);
@@ -46,17 +48,35 @@ router.post('/login', (req, res) => {
         return res.status(401).json({ error: 'Invalid password' });
     }
 
-    // If passwords match, generate JWT token
-    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    // Generate JWT secret keys
+    const jwtSecretKey = generateRandomSecretKey();
+    const jwtRefreshSecretKey = generateRandomSecretKey();
 
-    // Generate a refresh token
-    const refreshToken = jwt.sign({ userId: user.id }, process.env.JWT_REFRESH_SECRET, { expiresIn: '7d' });
+    console.log('JWT secret keys generated:');
+    console.log('JWT_SECRET:', jwtSecretKey);
+    console.log('JWT_REFRESH_SECRET:', jwtRefreshSecretKey);
+    
+    // Set environment variables
+    process.env.JWT_SECRET = jwtSecretKey;
+    process.env.JWT_REFRESH_SECRET = jwtRefreshSecretKey;
+
+    // Generate JWT token
+    const token = generateAccessToken(user.id);
+    const refreshToken = jwt.sign({ userId: user.id }, jwtRefreshSecretKey, { expiresIn: '3m' });
 
     res.json({ message: 'Login successful', token, refreshToken });
 });
 
+function generateAccessToken(userId) {
+    return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: '1m' });
+}
 
-// Route for token refresh
+function generateRandomSecretKey() {
+    // Generate a random string for the secret key
+    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+}
+
+
 router.post('/refresh-token', (req, res) => {
     const refreshToken = req.body.refreshToken;
 
@@ -74,14 +94,8 @@ router.post('/refresh-token', (req, res) => {
         // Refresh token is valid, generate a new access token
         const userId = decoded.userId; // Extract user ID from refresh token payload
 
-        // Find user by ID (you need to implement this logic)
-        const user = users.find(user => user.id === userId);
-        if (!user) {
-            return res.status(404).json({ error: 'User not found' });
-        }
-
         // Generate a new access token
-        const newToken = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const newToken = generateAccessToken(userId);
 
         // Send the new token to the client
         res.json({ token: newToken });
