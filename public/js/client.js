@@ -2,7 +2,7 @@
 // Function to refresh token
 async function refreshToken(refreshToken) {
     try {
-        const response = await fetch('/user/refresh-token', { // Changed endpoint to match server-side route
+        const response = await fetch('/user/refresh-token', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -17,7 +17,7 @@ async function refreshToken(refreshToken) {
     }
 }
 
-// Example usage:
+
 async function handleTokenExpiration() {
     const refreshToken = localStorage.getItem('refreshToken');
     if (refreshToken) {
@@ -29,8 +29,6 @@ async function handleTokenExpiration() {
             console.error('Token refresh failed:', error);
             // Handle error (e.g., redirect to login page)
         }
-    } else {
-        // Handle scenario where refreshToken is not available (e.g., redirect to login page)
     }
 }
 
