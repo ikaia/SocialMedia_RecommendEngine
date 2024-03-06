@@ -32,7 +32,7 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res) => {
 
-    const secretKey = process.env.SECRET_KEY;
+   
     try {
         const { email, password } = req.body;
         // Find user by email
@@ -44,9 +44,6 @@ router.post('/login', (req, res) => {
         if (user.password !== password) {
             return res.status(401).json({ error: 'Invalid password' });
         }
-        const token = jwt.sign({ userId: user.id, userEmail: user.email }, secretKey);
-        // Send token and message in response 
-        res.json({ token });
         res.json({ message: 'Login successful' });
     } catch (error) {
         console.error(error);

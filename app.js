@@ -7,8 +7,9 @@ const userRoutes = require('./routes/userRoutes.js');
 
 var app = express();
 
-// Middleware to parse JSON request bodies
 app.use(express.json());
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Define routes
 app.use('/api/', applicationRouter);

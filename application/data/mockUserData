@@ -1,20 +1,18 @@
-// mockUserData.js
-const bcrypt = require('bcrypt');
-// Mock user data
+
 const users = [
   {
-    id: 1,
-    username: 'user1',
-    email: 'user1@example.com',
-    password: '$2b$10$0mb0ZiJ7YkTHqmrGJGJ14.YIQiGFrFtQmoW/ALJ/DtRUL4LgG5ClG', // Hashed password for 'password123'
+      id: 1,
+      username: 'user1',
+      email: 'user1@example.com',
+      password: 'password1' // Plain-text password
   },
   {
-    id: 2,
-    username: 'user2',
-    email: 'user2@example.com',
-    password: '$2b$10$u.WE3s2B2EzQsNluZa4E9eS8YrFeg25zvOp0HpnF4bIThmFR6B9L6', // Hashed password for 'password456'
+      id: 2,
+      username: 'user2',
+      email: 'user2@example.com',
+      password: 'password2' // Plain-text password
   },
+  // Additional users...
 ];
 
-// Export mock user database
 module.exports = users;
