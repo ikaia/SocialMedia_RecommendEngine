@@ -113,7 +113,7 @@
             event.preventDefault();
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-
+    
             try {
                 const response = await fetch('/user/login', {
                     method: 'POST',
@@ -122,11 +122,13 @@
                     },
                     body: JSON.stringify({ email, password })
                 });
-
+    
                 const data = await response.json();
                 if (response.ok) {
                     // Login successful, handle redirection or other actions
                     alert('Login successful');
+                    localStorage.setItem('token', data.token); // Store token in local storage
+                    localStorage.setItem('refreshToken', data.refreshToken); // Store refresh token in local storage
                 } else {
                     // Login failed, display error message
                     alert(data.error || 'Login failed');
@@ -136,6 +138,44 @@
                 alert('An error occurred. Please try again later.');
             }
         });
+    
+        // Function to refresh token
+        async function refreshToken(refreshToken) {
+            try {
+                const response = await fetch('/user/refresh-token', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ refreshToken })
+                });
+                const data = await response.json();
+                return data.token;
+            } catch (error) {
+                console.error('Failed to refresh token:', error);
+                throw error;
+            }
+        }
+    
+        // Function to handle token expiration
+        async function handleTokenExpiration() {
+            const refreshToken = localStorage.getItem('refreshToken');
+            if (refreshToken) {
+                try {
+                    const newToken = await refreshToken(refreshToken);
+                    localStorage.setItem('token', newToken);
+                    console.log('Token refreshed successfully');
+                } catch (error) {
+                    console.error('Token refresh failed:', error);
+                    // Handle error (e.g., redirect to login page)
+                }
+            } else {
+                // Handle scenario where refreshToken is not available (e.g., redirect to login page)
+            }
+        }
+    
+        // Call handleTokenExpiration on app startup or wherever token expiration needs to be handled
+        handleTokenExpiration();
     </script>
 
 
