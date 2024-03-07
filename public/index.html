@@ -80,6 +80,7 @@
          <input type="password" id="password" name="password" required>
      </div>
      <button type="submit">Login</button>
+     <button id="logoutButton" type="button">Logout</button>
  </form>
 
 
@@ -143,6 +144,65 @@
         
     
     </script>
+
+<button id="logoutButton" type="button">Logout</button>
+
+<!-- Add the logout script -->
+<script>
+    document.getElementById('logoutButton').addEventListener('click', async function () {
+        try {
+            const response = await fetch('/user/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                // Logout successful, handle redirection or other actions
+                alert('Logout successful');
+                localStorage.removeItem('token'); // Remove token from local storage
+                localStorage.removeItem('refreshToken'); // Remove refresh token from local storage
+            } else {
+                // Logout failed, display error message
+                alert(data.error || 'Logout failed');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again later.');
+        }
+    });
+</script>
+
+
+<!-- Add the logout script -->
+<script>
+    document.getElementById('logoutButton').addEventListener('click', async function () {
+        try {
+            const response = await fetch('/user/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                // Logout successful, handle redirection or other actions
+                alert('Logout successful');
+                localStorage.removeItem('token'); // Remove token from local storage
+                localStorage.removeItem('refreshToken'); // Remove refresh token from local storage
+            } else {
+                // Logout failed, display error message
+                alert(data.error || 'Logout failed');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again later.');
+        }
+    });
+</script>
 
 
 </body>

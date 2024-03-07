@@ -1,13 +1,14 @@
-require('dotenv').config();
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
 const express = require('express');
 const router = express.Router();
-const path = require('path');
-const fs = require('fs');
-const users = require(path.join(__dirname, '../application/data/mockUserData.json'));
+const users = require('../application/data/mockUserData.json');
+const session = require('express-session');
 
-
+// Configure express-session middleware
+router.use(session({
+    secret: 'your_secret_key', // Change this to a random string
+    resave: false,
+    saveUninitialized: false,
+}));
 
 router.post('/register', (req, res) => {
     try {
@@ -26,6 +27,10 @@ router.post('/register', (req, res) => {
         };
         // Add new user to mock database
         users.push(newUser);
+
+        // Store user ID in session
+        req.session.userId = newUser.id;
+
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
         console.error(error);
@@ -35,72 +40,38 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res) => {
     const { email, password } = req.body;
+    console.log('Session data (login):', req.session);
 
     // Find user by email
     const user = users.find(user => user.email === email);
+    console.log('Found user:', user); // Add this line for debugging
 
     if (!user) {
         return res.status(404).json({ error: 'User not found' });
     }
 
-    // Compare passwords
-    if (user.password !== password) {
+    // Compare passwords (plain text)
+    if (password !== user.password) {
         return res.status(401).json({ error: 'Invalid password' });
     }
 
-    // Generate JWT secret keys
-    const jwtSecretKey = generateRandomSecretKey();
-    const jwtRefreshSecretKey = generateRandomSecretKey();
+    // Store user ID in session
+    req.session.userId = user.id;
 
-    console.log('JWT secret keys generated:');
-    console.log('JWT_SECRET:', jwtSecretKey);
-    console.log('JWT_REFRESH_SECRET:', jwtRefreshSecretKey);
-    
-    // Set environment variables
-    process.env.JWT_SECRET = jwtSecretKey;
-    process.env.JWT_REFRESH_SECRET = jwtRefreshSecretKey;
-
-    // Generate JWT token
-    const token = generateAccessToken(user.id);
-    const refreshToken = jwt.sign({ userId: user.id }, jwtRefreshSecretKey, { expiresIn: '3m' });
-
-    res.json({ message: 'Login successful', token, refreshToken });
+    res.json({ message: 'Login successful' });
 });
 
-function generateAccessToken(userId) {
-    return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: '1m' });
-}
 
-function generateRandomSecretKey() {
-    // Generate a random string for the secret key
-    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-}
-
-
-router.post('/refresh-token', (req, res) => {
-    const refreshToken = req.body.refreshToken;
-
-    // Validate refreshToken
-    if (!refreshToken) {
-        return res.status(400).json({ error: 'Refresh token is required' });
-    }
-
-    // Verify the refresh token
-    jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET, (err, decoded) => {
+router.post('/logout', (req, res) => {
+    // Destroy session on logout
+    console.log('Session data (logout):', req.session);
+    req.session.destroy((err) => {
         if (err) {
-            return res.status(401).json({ error: 'Invalid refresh token' });
+            console.error(err);
+            return res.status(500).json({ error: 'Failed to logout' });
         }
-
-        // Refresh token is valid, generate a new access token
-        const userId = decoded.userId; // Extract user ID from refresh token payload
-
-        // Generate a new access token
-        const newToken = generateAccessToken(userId);
-
-        // Send the new token to the client
-        res.json({ token: newToken });
+        res.json({ message: 'Logout successful' });
     });
 });
-
 
 module.exports = router;
