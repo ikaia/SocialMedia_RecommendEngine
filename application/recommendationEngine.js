@@ -1,3 +1,8 @@
+//Capstone CSCI-5530-A
+//Recommendation Engine
+//Group Members: Crystal Byrd, Tim McCarty, Ikaia Melton, Michael Minnick
+//Engine works by checking similarity between users and creating a recommendation score based on the similarity level to other users
+//Similarity is checked by how close ratings were to the same items. Same ratings gives very similar and a rating one point away is just similar. Anything further is valued as not similar.
 class RecommendationEngine {
     constructor() {
         this.userRatings = new Map();
