@@ -3,12 +3,20 @@
     "id": 1,
     "username": "user1",
     "email": "user1@example.com",
-    "password": "password1"
+    "password": "password1",
+    "ratings": [
+      {"movie_id": 101, "rating": 4},
+      {"movie_id": 102, "rating": 3}
+    ]
   },
   {
     "id": 2,
     "username": "user2",
     "email": "user2@example.com",
-    "password": "password2"
+    "password": "password2",
+    "ratings": [
+      {"movie_id": 101, "rating": 4},
+      {"movie_id": 102, "rating": 3}
+    ]
   }
 ]

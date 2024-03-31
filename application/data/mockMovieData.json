@@ -1,0 +1,21 @@
+[
+    {
+      "movie_id": 101,
+      "title": "Test1",
+      "genre": "Drama, Horror, Comedy",
+      "release_year": 2001
+    },
+    {
+      "movie_id": 102,
+      "title": "Test2",
+      "genre": "Crime",
+      "release_year": 2005
+    },
+    {
+      "movie_id": 103,
+      "title": "Test3",
+      "genre": "Action",
+      "release_year": 20015
+    }
+  ]
+  
