@@ -2,28 +2,67 @@
 <html lang="en">
 
 <head>
-    <title>Fast and Furry-ous</title>
+    <title>Social Media Recommended Engine</title>
     <!-- Bootstrap Style Sheet Imported and URL -->
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="/js/application.js" defer></script>
     <script src="scripts.js"></script>
 </head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
+    body {
+        background-color: #171717; /* Black background */
+        color: #ffffff; /* White text */
+    }
+
     header {
-      text-align: center;
-      margin-bottom: 30px;
-  }
-  h1 {
-            font-size: 3em; /*BIG Font*/
-            
-        }
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    h1 {
+        font-size: 3em; /* BIG Font */
+      
+        color: red; /* Red color */
+        margin-bottom: 5px; /* Add margin below the header */
+    }
+
+    .card {
+        background-color: #171717; /* Black background for cards */
+        color: #ffffff; /* White text for cards */
+    }
+
+    .card-header {
+        background-color: #171717; /* Black background for card headers */
+        border-bottom: none; /* Remove border */
+    }
+
+    .navbar {
+        background-color: #000000 !important; /* Black background for navbar */
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+        color: #ffffff !important; /* White text for navbar links */
+    }
+
+    .modal-content {
+        background-color: #171717; /* Black background for modal content */
+    }
+
+    /* Netflix font for the small text */
+    .small-text {
        
+        font-size: 3em; /* Adjust the font size */
+        color: red; /* Red color */
+        text-align: center; /* Center align the text */
+    }
 </style>
+</head>
 
 <body>
     <!--Navigation Bar Copied and Pasted From Bootstrap -->
-    <nav class="navbar" style="background-color: #f4f4f4;">
+    <nav class="navbar" style="background-color: #000000;">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Wiki</a>
@@ -54,7 +93,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="./login.html">Login</a>
+                            <a class="nav-link disabled" aria-disabled="true">Login</a>
                         </li>
                     </ul>
                     <form class="d-flex" role="search">
@@ -66,9 +105,9 @@
         </nav>
     </nav>
     <header>
-       <h1>YouTube VR</h1>
+        <h1>Netflix</h1>
+      
     </header>
-    
 
     <!-- Character Cards Section Container From Bootstrap -->
     <div class="container mt-5">
@@ -76,25 +115,24 @@
             <!-- Character Card Displays Here -->
             <div id="topmatter"></div>
             <div id="bottommatter"></div>
-            <nav class="navbar" style="background-color: #ffffff;"></nav> <!--A white cube to push down the cards-->
+            <nav class="navbar" style="background-color: #121212;"></nav> <!--A white cube to push down the cards-->
         </div>
     </div>
-<!-- Modal for displaying the larger card bootsrap-->
+<!-- Modal for displaying the larger card bootstrap-->
 <div class="modal fade" id="cardModal" tabindex="-1" role="dialog" aria-labelledby="cardModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content">
+        <div class="modal-content" style="background-color: #121212; opacity: 1;">
             <div class="modal-body">
+                <!-- Content goes here -->
             </div>
         </div>
     </div>
 </div>
+
  <!-- Bootstrap JS Scripts -->
  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
-
 </body>
 
 </html>
