@@ -2,20 +2,88 @@
     {
       "movie_id": 101,
       "title": "Test1",
-      "genre": "Drama, Horror, Comedy",
+      "genre": "Action, Horror, Comedy",
       "release_year": 2001
     },
     {
       "movie_id": 102,
       "title": "Test2",
-      "genre": "Crime",
+      "genre": "Action",
       "release_year": 2005
     },
     {
       "movie_id": 103,
       "title": "Test3",
       "genre": "Action",
-      "release_year": 20015
+      "release_year": 2015
+    },
+    {
+      "movie_id": 104,
+      "title": "Test4",
+      "genre": "Horror",
+      "release_year": 2001
+    },
+    {
+      "movie_id": 105,
+      "title": "Test5",
+      "genre": "Horror",
+      "release_year": 2001
+    },
+    {
+      "movie_id": 106,
+      "title": "Test6",
+      "genre": "Horror",
+      "release_year": 2001
+    },
+    {
+      "movie_id": 107,
+      "title": "Test7",
+      "genre": "Horror",
+      "release_year": 2001
+    },
+    {
+      "movie_id": 108,
+      "title": "Test8",
+      "genre": "Horror",
+      "release_year": 2001
+    }
+    ,
+    {
+      "movie_id": 109,
+      "title": "Test9",
+      "genre": "Comedy",
+      "release_year": 2001
+    },
+    {
+      "movie_id": 1010,
+      "title": "Test10",
+      "genre": "Comedy",
+      "release_year": 2001
+    },
+    {
+      "movie_id": 1011,
+      "title": "Test11",
+      "genre": "Comedy",
+      "release_year": 2001
+    },
+    {
+      "movie_id": 1012,
+      "title": "Test12",
+      "genre": "Comedy",
+      "release_year": 2001
+    },
+    {
+      "movie_id": 1013,
+      "title": "Test13",
+      "genre": "Comedy",
+      "release_year": 2001
+    }
+    ,
+    {
+      "movie_id": 1014,
+      "title": "Test14",
+      "genre": "Comedy, Horror",
+      "release_year": 2001
     }
   ]
   
