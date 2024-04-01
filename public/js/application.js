@@ -25,6 +25,7 @@ characters.forEach(element => {
 // Create and append character cards side by side
    createCharacterCard(element);
 });
+
 function getOne(id){
   let xhttp = new XMLHttpRequest();
   let charData = '';
@@ -89,21 +90,36 @@ function createCharacterCard(element) {
     characterCard.className = 'col mb-3'; //Added margin-bottom to create space between cards
     characterCard.onclick = () => showLargerCard(element);//Click event to open the modal with larger card content
 
-    //Each character card includea the character name, description, and full size image
-    let cardContentScript = `
-        <div class="card h-100 shadow">
-            <img src="img/${element.image}" class="card-img-top" alt="${element.name}" style="width: 300px; height: 300px; object-fit: cover;">
-            <div class="card-body">
-                <h5 class="card-title">${element.name}</h5>
-                <p class="card-text">${element.desc}</p>
-                <span class="heart-icon">&#10084;</span> <!-- Added empty heart icon added an id-->
+    
+        // Click event to open the modal with larger card content
+        characterCard.onclick = () => showLargerCard(element);
+    
+        // Each character card includes the character name, description, and full-size image
+        let cardContentScript = `
+            <div class="card h-100 shadow">
+                <img src="img/${element.image}" class="card-img-top" alt="${element.name}" style="object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title text-center">${element.name}</h5> <!-- Centered title -->
+                    <p class="card-text">${element.desc}</p>
+                    <span class="heart-icon">&#10084;</span> <!-- Added empty heart icon added an id-->
+                </div>
             </div>
-        </div>
-    `;
-    characterCard.innerHTML = cardContentScript;
-    characterCardsContainer.appendChild(characterCard);
-}    
-
+        `;
+        characterCard.innerHTML = cardContentScript;
+        characterCardsContainer.appendChild(characterCard);
+    
+        // Add hover effect using JavaScript
+        characterCard.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+            this.style.boxShadow = '0px 5px 15px rgba(0, 0, 0, 0.3)';
+            this.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+        });
+    
+        characterCard.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = 'none';
+        });
+    }
 //Function to show the larger card content in the modal
 function showLargerCard(element) {
     let modal = new bootstrap.Modal(document.getElementById('cardModal'));
@@ -114,7 +130,7 @@ function showLargerCard(element) {
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button> 
-        <img src="img/${element.image}" style="width: 300px; height: 300px; object-fit: cover;">
+        <img src="img/${element.image}" style= "object-fit: cover;">
         <class="img-fluid" alt="${element.name}">
         <h2>${element.name}</h2>
         <p>${element.desc}</p>
@@ -128,14 +144,3 @@ function closeModal() {
     let modal = new bootstrap.Modal(document.getElementById('cardModal'));//I try tto make it close by repeating itself
     modal.hide();
 }
-
-
-
-
-
-
-
-
-
-
-
