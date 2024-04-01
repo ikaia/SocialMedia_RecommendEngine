@@ -69,19 +69,7 @@
        <h1>YouTube VR</h1>
     </header>
     
- <h2>Login</h2>
- <form id="loginForm">
-     <div>
-         <label for="email">Email:</label>
-         <input type="email" id="email" name="email" required>
-     </div>
-     <div>
-         <label for="password">Password:</label>
-         <input type="password" id="password" name="password" required>
-     </div>
-     <button type="submit">Login</button>
-     <button id="logoutButton" type="button">Logout</button>
- </form>
+
 
 
     <!-- Character Cards Section Container From Bootstrap -->
@@ -108,101 +96,6 @@
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
-    <!-- Script to handle form submission -->
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', async function (event) {
-            event.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-    
-            try {
-                const response = await fetch('/user/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ email, password })
-                });
-    
-                const data = await response.json();
-                if (response.ok) {
-                    // Login successful, handle redirection or other actions
-                    alert('Login successful');
-                    localStorage.setItem('token', data.token); // Store token in local storage
-                    localStorage.setItem('refreshToken', data.refreshToken); // Store refresh token in local storage
-                } else {
-                    // Login failed, display error message
-                    alert(data.error || 'Login failed');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('An error occurred. Please try again later.');
-            }
-        });
-    
-            
-        
-    
-    </script>
-
-<button id="logoutButton" type="button">Logout</button>
-
-<!-- Add the logout script -->
-<script>
-    document.getElementById('logoutButton').addEventListener('click', async function () {
-        try {
-            const response = await fetch('/user/logout', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            });
-
-            const data = await response.json();
-            if (response.ok) {
-                // Logout successful, handle redirection or other actions
-                alert('Logout successful');
-                localStorage.removeItem('token'); // Remove token from local storage
-                localStorage.removeItem('refreshToken'); // Remove refresh token from local storage
-            } else {
-                // Logout failed, display error message
-                alert(data.error || 'Logout failed');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('An error occurred. Please try again later.');
-        }
-    });
-</script>
-
-
-<!-- Add the logout script -->
-<script>
-    document.getElementById('logoutButton').addEventListener('click', async function () {
-        try {
-            const response = await fetch('/user/logout', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            });
-
-            const data = await response.json();
-            if (response.ok) {
-                // Logout successful, handle redirection or other actions
-                alert('Logout successful');
-                localStorage.removeItem('token'); // Remove token from local storage
-                localStorage.removeItem('refreshToken'); // Remove refresh token from local storage
-            } else {
-                // Logout failed, display error message
-                alert(data.error || 'Logout failed');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('An error occurred. Please try again later.');
-        }
-    });
-</script>
 
 
 </body>
