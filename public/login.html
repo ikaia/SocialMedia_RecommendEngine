@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000; /* Change background color to black */
+            height: 100vh;
+            display: flex;
+            flex-direction: column; /* Align elements in a column */
+            justify-content: center;
+            align-items: center;
+        }
+
+        h2 {
+            text-align: center;
+            color: #fff;
+        }
+
+        form {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+        }
+
+        form label {
+            color: #fff;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        form input {
+            width: calc(100% - 12px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: none;
+            font-size: 16px;
+        }
+
+        form button {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: none;
+            background-color: #e50914;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #ff0f23;
+        }
+
+        #logoutButton {
+            margin-top: 10px;
+            background-color: #333;
+        }
+
+        #logoutButton:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Login</h2>
+    <form id="loginForm">
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit">Sign In</button>
+        <button id="logoutButton" type="button">Cancel</button>
+    </form>
+
+    <!-- Script to handle login -->
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                // Simulating login request
+                const response = await new Promise(resolve => setTimeout(() => resolve({
+                    ok: true,
+                    json: () => Promise.resolve({ token: 'example_token', refreshToken: 'example_refresh_token' })
+                }), 1000));
+
+                if (response.ok) {
+                    // Login successful, handle redirection or other actions
+                    alert('Login successful');
+                    localStorage.setItem('token', 'example_token'); // Store token in local storage
+                    localStorage.setItem('refreshToken', 'example_refresh_token'); // Store refresh token in local storage
+                } else {
+                    // Login failed, display error message
+                    alert('Login failed');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again later.');
+            }
+        });
+    </script>
+
+    <!-- Script to handle logout -->
+    <script>
+        document.getElementById('logoutButton').addEventListener('click', async function () {
+            // Simulating logout
+            localStorage.removeItem('token'); // Remove token from local storage
+            localStorage.removeItem('refreshToken'); // Remove refresh token from local storage
+            alert('Cancelled');
+        });
+    </script>
+
+</body>
+
+</html>
