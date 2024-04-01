@@ -2,7 +2,6 @@
 //Recommendation Engine
 //Group Members: Crystal Byrd, Tim McCarty, Ikaia Melton, Michael Minnick
 //Engine works by checking similarity between users and creating a recommendation score based on the similarity level to other users
-//Similarity is checked by how close ratings were to the same items. Same ratings gives very similar and a rating one point away is just similar. Anything further is valued as not similar.
 const fs = require('fs');
 const userData = require('./data/mockUserData.json');
 const movies = require('./data/mockMovieData.json');
@@ -18,7 +17,7 @@ class RecommendationEngine {
         }
         this.userRatings.get(user).set(movieId, rating);
     
-        // Update user data in mockUserData.json
+        
         const userIndex = userData.findIndex(userData => userData.username === user);
         if (userIndex !== -1) {
             userData[userIndex].ratings.push({ "movie_id": movieId, "rating": rating });
@@ -28,17 +27,16 @@ class RecommendationEngine {
         }
     }
     
-    
     getRecommendations(user) {
         const currentUserData = userData.find(userData => userData.username === user);
-    
+
         if (!currentUserData) {
             console.log(`User ${user} not found in mockUserData.json.`);
-            return new Map(); // Return an empty map if user data not found
+            return new Map(); 
         }
-    
+
         const currentUserRatings = new Map(currentUserData.ratings.map(({ movie_id, rating }) => [movie_id, rating]));
-        const recommendations = new Map(); // Declare recommendations here
+        const recommendations = new Map(); 
     
         for (const otherUserData of userData) {
             if (otherUserData.username !== user) {
@@ -47,8 +45,8 @@ class RecommendationEngine {
     
                 for (const { movie_id, rating: movieRating } of otherUserData.ratings) {
                     if (!currentUserRatings.has(movie_id) || currentUserRatings.get(movie_id) === 0) {
-                        let score = Math.floor(movieRating * similarity); // Rounded down to nearest whole number
-                        score = Math.min(5.0, score); // Ensure score doesn't exceed 5
+                        let score = Math.floor(movieRating * similarity); 
+                        score = Math.min(5.0, score); 
                         if (recommendations.has(movie_id)) {
                             recommendations.set(movie_id, Math.min(5.0, recommendations.get(movie_id) + score));
                         } else {
@@ -62,7 +60,6 @@ class RecommendationEngine {
         return recommendations;
     }
     
-
     getAllRecommendations(user) {
         console.log(`${user} recommendations:`);
         const allRecommendations = new Map();
@@ -99,7 +96,7 @@ class RecommendationEngine {
     }
 }
 
-// This is just a scanning tool used to determine if rating system was working once Engine was initilized 
+// This is just a scanning tool used to determine if the rating system is working once the Engine is initilized 
 const readline = require('readline');
 
 const rl = readline.createInterface({
@@ -152,9 +149,6 @@ for (const user of capStoneEngine.userRatings.keys()) {
         }
     }
 }
-
-
-
 
 console.log("This is an example of how to call for all of the recommendations and their associated scores for one user: ");
 console.log(capStoneEngine.getAllRecommendations("FakeUser_Comedy"));
