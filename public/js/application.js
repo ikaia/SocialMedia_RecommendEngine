@@ -134,9 +134,21 @@ function showLargerCard(element) {
         <class="img-fluid" alt="${element.name}">
         <h2>${element.name}</h2>
         <p>${element.desc}</p>
+        <div>
+        <h3>Rate this Movie:</h3>
+        <button type="button" class="btn btn-primary" onclick="rateMovie(1)">1</button>
+        <button type="button" class="btn btn-primary" onclick="rateMovie(2)">2</button>
+        <button type="button" class="btn btn-primary" onclick="rateMovie(3)">3</button>
+        <button type="button" class="btn btn-primary" onclick="rateMovie(4)">4</button>
+        <button type="button" class="btn btn-primary" onclick="rateMovie(5)">5</button>
+    </div>
     `;
     modalBody.innerHTML = largerCardContentScript;
     modal.show();
+}
+
+function rateMovie(rating) {
+  console.log("Rated movie with rating: " + rating);
 }
 
 //Function to close the modal and remove the current character card
