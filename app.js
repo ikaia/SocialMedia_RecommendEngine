@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const session = require('express-session');
 const path = require('path');
 const applicationRouter = require('./routes/application');
@@ -12,7 +13,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Configure express-session middleware
 app.use(session({
-    secret: 'your_secret_key', // Change this to a random string
+    secret: 'your_secret_key', 
     resave: false,
     saveUninitialized: false,
     cookie: {

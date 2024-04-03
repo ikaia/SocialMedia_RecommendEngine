@@ -1,7 +1,19 @@
 const express = require('express');
 const router = express.Router();
-const users = require('../application/data/mockUserData.json');
+const bcrypt = require('bcrypt');
 const session = require('express-session');
+const mysql = require('mysql2/promise');
+
+// Create MySQL connection pool
+const pool = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: 'Tine895O!',
+    database: 'capstone',
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
+});
 
 // Configure express-session middleware
 router.use(session({
@@ -9,27 +21,25 @@ router.use(session({
     resave: false,
     saveUninitialized: false,
 }));
-
-router.post('/register', (req, res) => {
+router.post('/register', async (req, res) => {
     try {
-        const { username, email, password } = req.body;
+        const { email, username, password } = req.body;
+        
         // Check if user with the same email already exists
-        const existingUser = users.find(user => user.email === email);
-        if (existingUser) {
+        const [existingUserRows, _] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
+        if (existingUserRows.length > 0) {
             return res.status(400).json({ error: 'Email already exists' });
         }
-        // Create user object
-        const newUser = {
-            id: users.length + 1, // Generate new user ID
-            username,
-            email,
-            password, // Store plain-text password will change later
-        };
-        // Add new user to mock database
-        users.push(newUser);
 
-        // Store user ID in session
-        req.session.userId = newUser.id;
+        // Generate a random salt
+        const saltRounds = 10; // Adjust according to your security needs
+        const salt = await bcrypt.genSalt(saltRounds);
+
+        // Combine password with pepper before hashing
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        // Insert new user into database
+        await pool.query('INSERT INTO users (email, username, password, salt) VALUES (?, ?, ?, ?)', [email, username, hashedPassword, salt]);
 
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
@@ -38,19 +48,21 @@ router.post('/register', (req, res) => {
     }
 });
 
+
+
 router.post('/login', (req, res) => {
     const { email, password } = req.body;
     console.log('Session data (login):', req.session);
 
     // Find user by email
     const user = users.find(user => user.email === email);
-    console.log('Found user:', user); // Add this line for debugging
+    console.log('Found user:', user); 
 
     if (!user) {
         return res.status(404).json({ error: 'User not found' });
     }
 
-    // Compare passwords (plain text)
+    // Compare passwords 
     if (password !== user.password) {
         return res.status(401).json({ error: 'Invalid password' });
     }
