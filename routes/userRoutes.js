@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const fs = require('fs');
 const session = require('express-session');
 
+const pepper = 'your_pepper_value';
 
 // Configure express-session middleware
 router.use(session({
@@ -64,7 +65,7 @@ router.post('/register', async (req, res) => {
     }
 });
 
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
     const { email, password } = req.body;
     console.log('Session data (login):', req.session);
 
@@ -76,8 +77,14 @@ router.post('/login', (req, res) => {
         return res.status(404).json({ error: 'User not found' });
     }
 
-    // Compare passwords 
-    if (password !== user.password) {
+    // Compare passwords using bcrypt
+    const hashedPassword = user.hashedPassword;
+    const isPasswordValid = await bcrypt.compare(password + pepper, hashedPassword);
+
+    console.log('Password + Pepper:', password + pepper);
+    console.log('Hashed Password:', hashedPassword);
+
+    if (!isPasswordValid) {
         return res.status(401).json({ error: 'Invalid password' });
     }
 
@@ -86,6 +93,9 @@ router.post('/login', (req, res) => {
 
     res.json({ message: 'Login successful' });
 });
+
+
+
 
 
 router.post('/logout', (req, res) => {
