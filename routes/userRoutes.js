@@ -1,19 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
+const fs = require('fs');
 const session = require('express-session');
-const mysql = require('mysql2/promise');
 
-// Create MySQL connection pool
-const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'Tine895O!',
-    database: 'capstone',
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
-});
 
 // Configure express-session middleware
 router.use(session({
@@ -21,13 +11,23 @@ router.use(session({
     resave: false,
     saveUninitialized: false,
 }));
+
+// Load existing user data from the JSON file
+let users = [];
+try {                              
+    const userData = fs.readFileSync('application/data/mockUserData.json');
+    users = JSON.parse(userData);
+} catch (error) {
+    console.error('Error reading user data:', error);
+}
+
 router.post('/register', async (req, res) => {
     try {
         const { email, username, password } = req.body;
         
         // Check if user with the same email already exists
-        const [existingUserRows, _] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
-        if (existingUserRows.length > 0) {
+        const existingUser = users.find(user => user.email === email);
+        if (existingUser) {
             return res.status(400).json({ error: 'Email already exists' });
         }
 
@@ -35,11 +35,27 @@ router.post('/register', async (req, res) => {
         const saltRounds = 10; // Adjust according to your security needs
         const salt = await bcrypt.genSalt(saltRounds);
 
+        // Generate a pepper (additional secret key)
+        const pepper = 'your_pepper_value'; // Change this to a strong random string
+        
         // Combine password with pepper before hashing
-        const hashedPassword = await bcrypt.hash(password, salt);
+        const hashedPassword = await bcrypt.hash(password + pepper, salt);
 
-        // Insert new user into database
-        await pool.query('INSERT INTO users (email, username, password, salt) VALUES (?, ?, ?, ?)', [email, username, hashedPassword, salt]);
+        // Create user object with hashed password and salt
+        const newUser = {
+            id: users.length + 1, // Generate new user ID
+            email,
+            username,
+            hashedPassword,
+            salt,
+            ratings: [],
+        };
+        
+        // Add new user to the existing user array
+        users.push(newUser);
+
+        // Write updated user data back to the JSON file
+        fs.writeFileSync('application/data/mockUserData.json', JSON.stringify(users, null, 2));
 
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
@@ -47,8 +63,6 @@ router.post('/register', async (req, res) => {
         res.status(500).json({ error: 'Failed to register user' });
     }
 });
-
-
 
 router.post('/login', (req, res) => {
     const { email, password } = req.body;
