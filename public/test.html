@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rating System</title>
+<style>
+  .rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    text-align: center;
+  }
+
+  .rating > span {
+    display: inline-block;
+    position: relative;
+    width: 1.1em;
+  }
+
+  .rating > span:hover:before,
+  .rating > span:hover ~ span:before {
+    content: "\2605";
+    position: absolute;
+  }
+
+  .rating > span:before {
+    content: "\2606";
+    position: absolute;
+  }
+
+  .rating > input {
+    display: none;
+  }
+
+  .rating > input:checked ~ span:before {
+    content: "\2605";
+    position: absolute;
+    font-weight: bold;
+  }
+
+  .rating > input:checked ~ span:hover:before,
+  .rating > input:checked ~ span:hover ~ span:before {
+    content: "\2605";
+    position: absolute;
+  }
+</style>
+</head>
+<body>
+
+<div class="rating">
+  <input type="radio" id="star5" name="rating" value="5">
+  <span><label for="star5">☆</label></span>
+  <input type="radio" id="star4" name="rating" value="4">
+  <span><label for="star4">☆</label></span>
+  <input type="radio" id="star3" name="rating" value="3">
+  <span><label for="star3">☆</label></span>
+  <input type="radio" id="star2" name="rating" value="2">
+  <span><label for="star2">☆</label></span>
+  <input type="radio" id="star1" name="rating" value="1">
+  <span><label for="star1">☆</label></span>
+</div>
+
+<script>
+  const labels = document.querySelectorAll('.rating span');
+
+  labels.forEach(label => {
+    label.addEventListener('click', function() {
+      const rating = this.previousElementSibling.value;
+      console.log("Rating: " + rating);
+      // Here you can do whatever you want with the rating value, like storing it in a variable, sending it to the server, etc.
+    });
+  });
+</script>
+
+</body>
+</html>

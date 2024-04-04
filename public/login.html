@@ -20,7 +20,36 @@
         </div>
         <button type="submit">Login</button>
         <button id="logoutButton" type="button">Logout</button>
+        <button id="registerBtn" type="button">Register</button>
     </form>
+
+    <script>
+        document.getElementById('registerBtn').addEventListener('click', async function () {
+            window.location.href = "register.html"
+            // try {
+            //     const response = await fetch('/user/logout', {
+            //         method: 'POST',
+            //         headers: {
+            //             'Content-Type': 'application/json'
+            //         },
+            //     });
+
+            //     const data = await response.json();
+            //     if (response.ok) {
+            //         // Logout successful, handle redirection or other actions
+            //         alert('Logout successful');
+            //         localStorage.removeItem('token'); // Remove token from local storage
+            //         localStorage.removeItem('refreshToken'); // Remove refresh token from local storage
+            //     } else {
+            //         // Logout failed, display error message
+            //         alert(data.error || 'Logout failed');
+            //     }
+            // } catch (error) {
+            //     console.error('Error:', error);
+            //     alert('An error occurred. Please try again later.');
+            // }
+        });
+    </script>
 
     <!-- Script to handle login -->
     <script>
@@ -44,6 +73,7 @@
                     alert('Login successful');
                     localStorage.setItem('token', data.token); // Store token in local storage
                     localStorage.setItem('refreshToken', data.refreshToken); // Store refresh token in local storage
+                    window.location.href = "index.html"
                 } else {
                     // Login failed, display error message
                     alert(data.error || 'Login failed');

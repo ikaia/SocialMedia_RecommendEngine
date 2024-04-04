@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const users = require('../application/data/mockUserData.json');
 const session = require('express-session');
+const fs = require('fs');
 
 // Configure express-session middleware
 router.use(session({
@@ -23,10 +24,12 @@ router.post('/register', (req, res) => {
             id: users.length + 1, // Generate new user ID
             username,
             email,
-            password, // Store plain-text password will change later
+            password,
+            ratings:[] // Store plain-text password will change later
         };
         // Add new user to mock database
         users.push(newUser);
+        fs.writeFileSync('./application/data/mockUserData.json', JSON.stringify(users,null,2))
 
         // Store user ID in session
         req.session.userId = newUser.id;

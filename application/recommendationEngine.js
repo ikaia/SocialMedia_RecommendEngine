@@ -20,8 +20,11 @@ class RecommendationEngine {
         
         const userIndex = userData.findIndex(userData => userData.username === user);
         if (userIndex !== -1) {
+           let found = userData[userIndex].ratings.find(e => e.movie_id === movieId);
+           if (!found){
             userData[userIndex].ratings.push({ "movie_id": movieId, "rating": rating });
             fs.writeFileSync('./application/data/mockUserData.json', JSON.stringify(userData, null, 2));
+           }
         } else {
             console.log(`User ${user} not found in mockUserData.json.`);
         }

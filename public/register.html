@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+
+<body>
+    <h2>Register
+    </h2>
+    
+    <form id="registerForm">
+        <div>
+            <label for="username">Username:</label>
+            <input type="username" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <label for="password">Verify Password:</label>
+            <input type="password" id="passwordVerify" name="password" required>
+        </div>
+        <button type="submit">Register</button>
+        <button id="loginBtn" type="button">Login</button>
+    </form>
+
+    <script>
+        document.getElementById('loginBtn').addEventListener('click', async function () {
+            window.location.href = "login.html"
+            
+        });
+    </script>
+
+    <!-- Script to handle registration -->
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async function (event) {
+            
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const passwordVerify = document.getElementById('passwordVerify').value;
+
+            if(password != passwordVerify){
+                alert('Your password does not match. Please try again')
+                return
+            }
+
+            try {
+                const response = await fetch('/user/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, email, password })
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    // registration successful, handle redirection or other actions
+                    alert('Registration successful');
+                    //setTimeout("window.location.href = 'login.html'", 1000)
+                    window.location.href = "login.html"
+                } else {
+                    // Login failed, display error message
+                    alert(data.error || 'Registration failed');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again later.');
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>

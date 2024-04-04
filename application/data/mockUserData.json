@@ -5,7 +5,34 @@
     "email": "user1@example.com",
     "password": "password1",
     "ratings": [
-
+      {
+        "movie_id": 104,
+        "rating": 5
+      },
+      {
+        "movie_id": 101,
+        "rating": 5
+      },
+      {
+        "movie_id": 105,
+        "rating": 5
+      },
+      {
+        "movie_id": 106,
+        "rating": 5
+      },
+      {
+        "movie_id": 107,
+        "rating": 5
+      },
+      {
+        "movie_id": 108,
+        "rating": 5
+      },
+      {
+        "movie_id": 1014,
+        "rating": 5
+      }
     ]
   },
   {
@@ -14,25 +41,73 @@
     "email": "user2@example.com",
     "password": "password2",
     "ratings": [
-
-    ]
-  },
-  {
-    "id": 2,
-    "username": "FakeUser_Comedy",
-    "email": "user2@example.com",
-    "password": "password2",
-    "ratings": [
-
+      {
+        "movie_id": 103,
+        "rating": 5
+      },
+      {
+        "movie_id": 101,
+        "rating": 5
+      },
+      {
+        "movie_id": 102,
+        "rating": 5
+      }
     ]
   },
   {
     "id": 3,
+    "username": "FakeUser_Comedy",
+    "email": "user2@example.com",
+    "password": "password2",
+    "ratings": [
+      {
+        "movie_id": 109,
+        "rating": 5
+      },
+      {
+        "movie_id": 101,
+        "rating": 5
+      },
+      {
+        "movie_id": 1010,
+        "rating": 5
+      },
+      {
+        "movie_id": 1011,
+        "rating": 5
+      },
+      {
+        "movie_id": 1012,
+        "rating": 5
+      },
+      {
+        "movie_id": 1013,
+        "rating": 5
+      },
+      {
+        "movie_id": 1014,
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": 4,
     "username": "TestUser",
     "email": "user2@example.com",
     "password": "password2",
     "ratings": [
-
+      {
+        "movie_id": 105,
+        "rating": 5
+      }
     ]
+  },
+  {
+    "id": 5,
+    "username": "abcd",
+    "email": "fakemail@gmail.com",
+    "password": "12345",
+    "ratings": []
   }
 ]

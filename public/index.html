@@ -4,7 +4,7 @@
 <head>
     <title>Social Media Recommended Engine</title>
     <!-- Bootstrap Style Sheet Imported and URL -->
-    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/css copy/style.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="/js/application.js" defer></script>
     <script src="scripts.js"></script>
@@ -93,7 +93,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" aria-disabled="true">Login</a>
+                            <a class="nav-link" aria-disabled="true" href="login.html">Login</a>
                         </li>
                     </ul>
                     <form class="d-flex" role="search">
@@ -133,6 +133,12 @@
  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ <script>
+    function setRating(){
+        const rating = event.currentTarget.previousElementSibling.value;
+        console.log("Rating: " + rating);
+    }
+ </script>
 </body>
 
 </html>

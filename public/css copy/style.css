@@ -1,1 +1,40 @@
-@import "bootstrap.min.css";
+
+
+.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    text-align: center;
+  }
+
+  .rating > span {
+    display: inline-block;
+    position: relative;
+    width: 1.1em;
+  }
+
+  .rating > span:hover:before,
+  .rating > span:hover ~ span:before {
+    content: "\2605";
+    position: absolute;
+  }
+
+  .rating > span:before {
+    content: "\2606";
+    position: absolute;
+  }
+
+  .rating > input {
+    display: none;
+  }
+
+  .rating > input:checked ~ span:before {
+    content: "\2605";
+    position: absolute;
+    font-weight: bold;
+  }
+
+  .rating > input:checked ~ span:hover:before,
+  .rating > input:checked ~ span:hover ~ span:before {
+    content: "\2605";
+    position: absolute;
+  }
