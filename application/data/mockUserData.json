@@ -2,7 +2,7 @@
 [
   {
     "id": 1,
-    "username": "FakeUser_Horror",
+    "username": "FakeUser_comedy",
     "email": "user1@example.com",
     "password": "password1",
     "ratings": [
@@ -10,27 +10,138 @@
   },
   {
     "id": 2,
-    "username": "FakeUser_Action",
+    "username": "FakeUser_drama",
     "email": "user2@example.com",
     "password": "password2",
     "ratings": [
     ]
   },
   {
-    "id": 2,
-    "username": "FakeUser_Comedy",
+    "id": 3,
+    "username": "FakeUser_history",
     "email": "user3@example.com",
     "password": "password3",
     "ratings": [
     ]
   },
   {
-    "id": 3,
-    "username": "TestUser",
+    "id": 4,
+    "username": "FakeUser_romance",
     "email": "user4@example.com",
-    "password": "password4",
+    "password": "password2",
     "ratings": [
-
+    ]
+  },
+  {
+    "id": 5,
+    "username": "FakeUser_crime",
+    "email": "user2@example.com",
+    "password": "password2",
+    "ratings": [
+    ]
+  },
+  {
+    "id": 6,
+    "username": "FakeUser_thriller",
+    "email": "user2@example.com",
+    "password": "password2",
+    "ratings": [
+    ]
+  },
+  {
+    "id": 7,
+    "username": "FakeUser_music",
+    "email": "user2@example.com",
+    "password": "password2",
+    "ratings": [
+    ]
+  },
+  {
+    "id": 8,
+    "username": "FakeUser_documentation",
+    "email": "user2@example.com",
+    "password": "password2",
+    "ratings": [
+    ]
+  },
+  {
+    "id": 9,
+    "username": "FakeUser_action",
+    "email": "user2@example.com",
+    "password": "password2",
+    "ratings": [
+    ]
+  },
+  {
+    "id": 10,
+    "username": "FakeUser_family",
+    "email": "user2@example.com",
+    "password": "password2",
+    "ratings": [
+    ]
+  },
+  {
+    "id": 11,
+    "username": "FakeUser_horror",
+    "email": "user2@example.com",
+    "password": "password2",
+    "ratings": [
+    ]
+  },
+  {
+    "id": 12,
+    "username": "FakeUser_sport",
+    "email": "user2@example.com",
+    "password": "password2",
+    "ratings": [
+    ]
+  },
+  {
+    "id": 13,
+    "username": "FakeUser_fantasy",
+    "email": "user2@example.com",
+    "password": "password2",
+    "ratings": [
+    ]
+  },
+  {
+    "id": 14,
+    "username": "FakeUser_animation",
+    "email": "user2@example.com",
+    "password": "password2",
+    "ratings": [
+    ]
+  },
+  {
+    "id": 15,
+    "username": "FakeUser_scifi",
+    "email": "user2@example.com",
+    "password": "password2",
+    "ratings": [
+    ]
+  },
+  {
+    "id": 16,
+    "username": "FakeUser_war",
+    "email": "user2@example.com",
+    "password": "password2",
+    "ratings": [
+    ]
+  },
+  {
+    "id": 17,
+    "username": "FakeUser_european",
+    "email": "user2@example.com",
+    "password": "password2",
+    "ratings": [
+    ]
+  },
+  {
+    "id": 18,
+    "username": "testUser",
+    "email": "user2@example.com",
+    "password": "password2",
+    "ratings": [
     ]
   }
 ]
