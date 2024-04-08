@@ -17,7 +17,8 @@ router.use(session({
 let users = [];
 try {                              
     const userData = fs.readFileSync('application/data/mockUserData.json');
-    users = JSON.parse(userData);
+    const jsonData = JSON.parse(userData);
+    users = jsonData.data;
 } catch (error) {
     console.error('Error reading user data:', error);
 }
@@ -56,7 +57,7 @@ router.post('/register', async (req, res) => {
         users.push(newUser);
 
         // Write updated user data back to the JSON file
-        fs.writeFileSync('application/data/mockUserData.json', JSON.stringify(users, null, 2));
+        fs.writeFileSync('application/data/mockUserData.json', JSON.stringify({ data: users}, null, 2));
 
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {

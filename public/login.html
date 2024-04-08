@@ -90,6 +90,16 @@
                     alert('Login successful');
                     localStorage.setItem('token', data.token); // Store token in local storage
                     localStorage.setItem('refreshToken', data.refreshToken); // Store refresh token in local storage
+                    const userDataResponse = await fetch('/user-data');
+                    const userData = await userDataResponse.json();
+                    console.log("You are here");
+                    console.log(userData);
+                    for (let i = 0; i < userData.data.length; i++) {
+                    if (userData.data[i].email === email) {
+                        userID = userData.data[i].id
+                        console.log(userID);
+                    } 
+                }
                 } else {
                     // Login failed, display error message
                     alert(data.error || 'Login failed');
