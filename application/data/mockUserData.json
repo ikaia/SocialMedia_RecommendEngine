@@ -5,10 +5,6 @@
     "email": "user1@example.com",
     "password": "password1",
     "ratings": [
-      {
-        "movie_id": 3745,
-        "rating": 5
-      }
     ]
   },
   {
@@ -17,10 +13,6 @@
     "email": "user2@example.com",
     "password": "password2",
     "ratings": [
-      {
-        "movie_id": 3746,
-        "rating": 5
-      }
     ]
   },
   {
@@ -29,10 +21,6 @@
     "email": "user3@example.com",
     "password": "password3",
     "ratings": [
-      {
-        "movie_id": 3747,
-        "rating": 5
-      }
     ]
   },
   {
@@ -41,10 +29,6 @@
     "email": "user4@example.com",
     "password": "password2",
     "ratings": [
-      {
-        "movie_id": 3748,
-        "rating": 5
-      }
     ]
   },
   {
@@ -53,10 +37,6 @@
     "email": "user2@example.com",
     "password": "password2",
     "ratings": [
-      {
-        "movie_id": 3749,
-        "rating": 5
-      }
     ]
   },
   {
@@ -65,10 +45,6 @@
     "email": "user2@example.com",
     "password": "password2",
     "ratings": [
-      {
-        "movie_id": 3750,
-        "rating": 5
-      }
     ]
   },
   {
@@ -77,10 +53,6 @@
     "email": "user2@example.com",
     "password": "password2",
     "ratings": [
-      {
-        "movie_id": 3751,
-        "rating": 5
-      }
     ]
   },
   {
@@ -89,10 +61,6 @@
     "email": "user2@example.com",
     "password": "password2",
     "ratings": [
-      {
-        "movie_id": 3752,
-        "rating": 5
-      }
     ]
   },
   {
@@ -101,10 +69,6 @@
     "email": "user2@example.com",
     "password": "password2",
     "ratings": [
-      {
-        "movie_id": 3753,
-        "rating": 5
-      }
     ]
   },
   {
@@ -113,10 +77,6 @@
     "email": "user2@example.com",
     "password": "password2",
     "ratings": [
-      {
-        "movie_id": 3754,
-        "rating": 5
-      }
     ]
   },
   {
@@ -125,10 +85,6 @@
     "email": "user2@example.com",
     "password": "password2",
     "ratings": [
-      {
-        "movie_id": 3755,
-        "rating": 5
-      }
     ]
   },
   {
@@ -137,10 +93,6 @@
     "email": "user2@example.com",
     "password": "password2",
     "ratings": [
-      {
-        "movie_id": 3756,
-        "rating": 5
-      }
     ]
   },
   {
@@ -149,10 +101,6 @@
     "email": "user2@example.com",
     "password": "password2",
     "ratings": [
-      {
-        "movie_id": 3757,
-        "rating": 5
-      }
     ]
   },
   {
@@ -161,10 +109,7 @@
     "email": "user2@example.com",
     "password": "password2",
     "ratings": [
-      {
-        "movie_id": 3758,
-        "rating": 5
-      }
+
     ]
   },
   {
@@ -173,10 +118,6 @@
     "email": "user2@example.com",
     "password": "password2",
     "ratings": [
-      {
-        "movie_id": 3759,
-        "rating": 5
-      }
     ]
   },
   {
@@ -185,10 +126,6 @@
     "email": "user2@example.com",
     "password": "password2",
     "ratings": [
-      {
-        "movie_id": 3760,
-        "rating": 5
-      }
     ]
   },
   {
@@ -197,10 +134,6 @@
     "email": "user2@example.com",
     "password": "password2",
     "ratings": [
-      {
-        "movie_id": 3761,
-        "rating": 5
-      }
     ]
   },
   {
@@ -208,6 +141,14 @@
     "username": "testUser",
     "email": "user2@example.com",
     "password": "password2",
+    "ratings": []
+  },
+  {
+    "id": 19,
+    "email": "user15@example.com",
+    "username": "g",
+    "hashedPassword": "$2b$10$4flordv7BoG.jdxbnOHYkORLPpKTefaqEV4V4M63w7CAW60kwEKCi",
+    "salt": "$2b$10$4flordv7BoG.jdxbnOHYkO",
     "ratings": []
   }
 ]

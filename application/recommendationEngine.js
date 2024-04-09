@@ -4,7 +4,7 @@
 //Engine works by checking similarity between users and creating a recommendation score based on the similarity level to other users
 const fs = require('fs');
 const userData = require('./data/mockUserData.json');
-const movies = require('./data/applicationData.json');
+const movies = require('./data/movieData.json');
 
 class RecommendationEngine {
     constructor() {
@@ -139,7 +139,8 @@ for (const user of capStoneEngine.userRatings.keys()) {
     userRecommendations.forEach((score, item) => console.log(`${item}: ${score}`));
     console.log();
 }
-/*
+
+
 capStoneEngine.addRating("FakeUser_comedy", 3745, 5.0); 
 capStoneEngine.addRating("FakeUser_drama", 3746, 5.0);  
 capStoneEngine.addRating("FakeUser_history", 3747, 5.0);
@@ -157,16 +158,16 @@ capStoneEngine.addRating("FakeUser_animation", 3758, 5.0);
 capStoneEngine.addRating("FakeUser_scifi", 3759, 5.0); 
 capStoneEngine.addRating("FakeUser_war", 3760, 5.0); 
 capStoneEngine.addRating("FakeUser_european", 3761, 5.0); 
-*/
+
 
 for (const user of capStoneEngine.userRatings.keys()) {
     const userGenre = user.split('_')[1]; 
     const userRatings = capStoneEngine.userRatings.get(user);
     for (const movie of movies) {
-        if (!userRatings || !userRatings.has(movie.id)) {
+        if (!userRatings || !userRatings.has(movie.movie_id)) {
             const genres = movie.genre.split(',').map(genre => genre.trim());
             if (genres.includes(userGenre)) {
-                capStoneEngine.addRating(user, movie.id, 5.0);
+                capStoneEngine.addRating(user, movie.movie_id, 5.0);
             }
         }
     }
