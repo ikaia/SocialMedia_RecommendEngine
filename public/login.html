@@ -70,9 +70,12 @@
                 const data = await response.json();
                 if (response.ok) {
                     // Login successful, handle redirection or other actions
-                    alert('Login successful');
-                    localStorage.setItem('token', data.token); // Store token in local storage
-                    localStorage.setItem('refreshToken', data.refreshToken); // Store refresh token in local storage
+                    alert(data.message);
+                    //localStorage.setItem('token', data.token); // Store token in local storage
+                    //localStorage.setItem('refreshToken', data.refreshToken);
+                    //localStorage.setItem("userId", data.userId);
+                    sessionStorage.setItem("username", data.username);
+                    sessionStorage.setItem("userId", data.userId);
                     window.location.href = "index.html"
                 } else {
                     // Login failed, display error message
@@ -101,7 +104,8 @@
                     // Logout successful, handle redirection or other actions
                     alert('Logout successful');
                     localStorage.removeItem('token'); // Remove token from local storage
-                    localStorage.removeItem('refreshToken'); // Remove refresh token from local storage
+                    localStorage.removeItem('refreshToken');
+                    sessionStorage.removeItem("userId");
                 } else {
                     // Logout failed, display error message
                     alert(data.error || 'Logout failed');

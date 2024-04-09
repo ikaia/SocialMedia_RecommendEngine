@@ -61,7 +61,7 @@ router.post('/login', (req, res) => {
     // Store user ID in session
     req.session.userId = user.id;
 
-    res.json({ message: 'Login successful' });
+    res.json({ message: 'Login successful', userId: user.id, username: user.username });
 });
 
 

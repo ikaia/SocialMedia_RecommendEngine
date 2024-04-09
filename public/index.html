@@ -136,7 +136,23 @@
  <script>
     function setRating(){
         const rating = event.currentTarget.previousElementSibling.value;
-        console.log("Rating: " + rating);
+        const movieId = document.getElementById("ratingDiv").dataset.id;
+        const username = sessionStorage.getItem("username")
+        if(!username){
+            alert("Please login to save a rating")
+            return
+        }
+        var xhttp = new XMLHttpRequest();
+  let data = '';
+  xhttp.open('POST', 'http://localhost:3050/api/addRating', false);
+  xhttp.setRequestHeader('Content-Type', 'application/json');
+  xhttp.send(JSON.stringify({rating: parseInt(rating),movieId: parseInt(movieId), username}));
+  if (xhttp.status == 200) {
+    data = JSON.parse(xhttp.responseText);
+  } else {
+    alert("There is something wrong.  Please try again later.");
+  }
+  return data;
     }
  </script>
 </body>

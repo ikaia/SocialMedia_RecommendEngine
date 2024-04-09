@@ -134,7 +134,7 @@ function showLargerCard(element) {
         <class="img-fluid" alt="${element.name}">
         <h2>${element.name}</h2>
         <p>${element.desc}</p>
-        <div class="rating">
+        <div class="rating" id="ratingDiv" data-id="${element.id}">
         <input type="radio" id="star5" name="rating" value="5">
         <span onclick="setRating()"><label for="star5">☆</label></span>
         <input type="radio" id="star4" name="rating" value="4">
