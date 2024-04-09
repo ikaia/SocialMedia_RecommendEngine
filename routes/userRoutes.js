@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const users = require('../application/data/mockUserData.json');
+const bcrypt = require('bcrypt');
+const fs = require('fs');
 const session = require('express-session');
 const fs = require('fs');
+
+const pepper = 'your_pepper_value';
 
 // Configure express-session middleware
 router.use(session({
@@ -11,28 +14,52 @@ router.use(session({
     saveUninitialized: false,
 }));
 
-router.post('/register', (req, res) => {
+// Load existing user data from the JSON file
+let users = [];
+try {                              
+    const userData = fs.readFileSync('application/data/mockUserData.json');
+    const jsonData = JSON.parse(userData);
+    users = jsonData.data;
+} catch (error) {
+    console.error('Error reading user data:', error);
+}
+
+router.post('/register', async (req, res) => {
     try {
-        const { username, email, password } = req.body;
+        const { email, username, password } = req.body;
+        
         // Check if user with the same email already exists
         const existingUser = users.find(user => user.email === email);
         if (existingUser) {
             return res.status(400).json({ error: 'Email already exists' });
         }
-        // Create user object
+
+        // Generate a random salt
+        const saltRounds = 10; // Adjust according to your security needs
+        const salt = await bcrypt.genSalt(saltRounds);
+
+        // Generate a pepper (additional secret key)
+        const pepper = 'your_pepper_value'; // Change this to a strong random string
+        
+        // Combine password with pepper before hashing
+        const hashedPassword = await bcrypt.hash(password + pepper, salt);
+
+        // Create user object with hashed password and salt
         const newUser = {
             id: users.length + 1, // Generate new user ID
-            username,
             email,
-            password,
-            ratings:[] // Store plain-text password will change later
+            username,
+            hashedPassword,
+            salt,
+            ratings: [],
         };
-        // Add new user to mock database
+        
+        // Add new user to the existing user array
         users.push(newUser);
         fs.writeFileSync('./application/data/mockUserData.json', JSON.stringify(users,null,2))
 
-        // Store user ID in session
-        req.session.userId = newUser.id;
+        // Write updated user data back to the JSON file
+        fs.writeFileSync('application/data/mockUserData.json', JSON.stringify({ data: users}, null, 2));
 
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
@@ -41,20 +68,26 @@ router.post('/register', (req, res) => {
     }
 });
 
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
     const { email, password } = req.body;
     console.log('Session data (login):', req.session);
 
     // Find user by email
     const user = users.find(user => user.email === email);
-    console.log('Found user:', user); // Add this line for debugging
+    console.log('Found user:', user); 
 
     if (!user) {
         return res.status(404).json({ error: 'User not found' });
     }
 
-    // Compare passwords (plain text)
-    if (password !== user.password) {
+    // Compare passwords using bcrypt
+    const hashedPassword = user.hashedPassword;
+    const isPasswordValid = await bcrypt.compare(password + pepper, hashedPassword);
+
+    console.log('Password + Pepper:', password + pepper);
+    console.log('Hashed Password:', hashedPassword);
+
+    if (!isPasswordValid) {
         return res.status(401).json({ error: 'Invalid password' });
     }
 
@@ -63,6 +96,9 @@ router.post('/login', (req, res) => {
 
     res.json({ message: 'Login successful', userId: user.id, username: user.username });
 });
+
+
+
 
 
 router.post('/logout', (req, res) => {

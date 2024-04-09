@@ -151,6 +151,10 @@ function showLargerCard(element) {
   modal.show();
 }
 
+function rateMovie(rating) {
+  console.log("Rated movie with rating: " + rating);
+}
+
 //Function to close the modal and remove the current character card
 function closeModal() {
   let modal = new bootstrap.Modal(document.getElementById('cardModal'));//I try tto make it close by repeating itself
