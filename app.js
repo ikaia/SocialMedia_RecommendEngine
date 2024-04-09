@@ -5,7 +5,6 @@ const path = require('path');
 const applicationRouter = require('./routes/application');
 const publicRouter = require('./routes/public');
 const userRoutes = require('./routes/userRoutes.js');
-const fs = require('fs');
 
 const app = express();
 
@@ -21,18 +20,6 @@ app.use(session({
         maxAge: 3600000, 
     }
 }));
-
-app.get('/user-data', (req, res) => {
-  fs.readFile('application/data/mockUserData.json', 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('Error fetching user data');
-      return;
-    }
-    res.json(JSON.parse(data));
-  });
-});
-
 
 // Define routes
 app.use('/api/', applicationRouter);
