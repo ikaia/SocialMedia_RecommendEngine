@@ -4,7 +4,7 @@
 <head>
     <title>Social Media Recommended Engine</title>
     <!-- Bootstrap Style Sheet Imported and URL -->
-    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/css copy/style.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="/js/application.js" defer></script>
     <script src="scripts.js"></script>
@@ -181,6 +181,28 @@
  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ <script>
+    function setRating(){
+        const rating = event.currentTarget.previousElementSibling.value;
+        const movieId = document.getElementById("ratingDiv").dataset.id;
+        const username = sessionStorage.getItem("username")
+        if(!username){
+            alert("Please login to save a rating")
+            return
+        }
+        var xhttp = new XMLHttpRequest();
+  let data = '';
+  xhttp.open('POST', 'http://localhost:3050/api/addRating', false);
+  xhttp.setRequestHeader('Content-Type', 'application/json');
+  xhttp.send(JSON.stringify({rating: parseInt(rating),movieId: parseInt(movieId), username}));
+  if (xhttp.status == 200) {
+    data = JSON.parse(xhttp.responseText);
+  } else {
+    alert("There is something wrong.  Please try again later.");
+  }
+  return data;
+    }
+ </script>
 
       <!-- Script to show popup message -->
       <script>

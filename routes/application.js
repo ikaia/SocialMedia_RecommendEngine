@@ -19,10 +19,13 @@ router.get('/userRating/:userId', function(req, res, next) {
     res.send(html);
 });
 
-router.get('/addRating', function(req, res, next) {
+
+router.post('/addRating', function(req, res, next) {
     //  /addRating?user=User1&movie=King Kong&rating=4
+    const data = req.body;
     appController = new applicationController();
-    html = appController.getUserRecommendations(req.query.user);
+    appController.addRating(data.username, data.movieId, data.rating);
+    html = appController.getUserRecommendations(data.username);
     res.send(html);
 });
 

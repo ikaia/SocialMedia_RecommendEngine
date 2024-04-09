@@ -4,7 +4,7 @@ const { RecommendationEngine } = require('./recommendationEngine.js');
 
 
 class application {
-    test = true;
+    //test = false;
     recommendationEngine = new RecommendationEngine();
     
 
@@ -30,7 +30,7 @@ class application {
 
     }
 
-    getUserRecommendations(userId){
+    getUserRecommendations(username){
        
         
        
@@ -50,12 +50,12 @@ class application {
        // engine.getAllRecommendations("User1");
 
        //re.getRecommendations(userId)
-       if(test){
-            this.recommendationEngine.addTestData();
-        }
-       const test = this.recommendationEngine.getRecommendations(userId)
+    //    if(test){
+    //         this.recommendationEngine.addTestData();
+    //     }
+       const test1 = this.recommendationEngine.getRecommendations(username)
 
-        const test2 = Array.from(test);
+        const test2 = Array.from(test1);
 
         const test3 = JSON.stringify(test2);
 
@@ -63,14 +63,14 @@ class application {
 
     }
 
-    addRating(userId, movie, rating){
+    addRating(username, movie, rating){
         
 
-        if(test){
-            this.recommendationEngine.addTestData();
-        }
+        // if(test){
+        //     this.recommendationEngine.addTestData();
+        // }
 
-        this.recommendationEngine.addRating(userId, movie, rating)
+        this.recommendationEngine.addRating(username, movie, rating)
 
         return true
 

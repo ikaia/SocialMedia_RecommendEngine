@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const fs = require('fs');
 const session = require('express-session');
+const fs = require('fs');
 
 const pepper = 'your_pepper_value';
 
@@ -54,6 +55,7 @@ router.post('/register', async (req, res) => {
         
         // Add new user to the existing user array
         users.push(newUser);
+        fs.writeFileSync('./application/data/mockUserData.json', JSON.stringify(users,null,2))
 
         // Write updated user data back to the JSON file
         fs.writeFileSync('application/data/mockUserData.json', JSON.stringify(users, null, 2));
@@ -91,7 +93,7 @@ router.post('/login', async (req, res) => {
     // Store user ID in session
     req.session.userId = user.id;
 
-    res.json({ message: 'Login successful' });
+    res.json({ message: 'Login successful', userId: user.id, username: user.username });
 });
 
 

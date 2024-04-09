@@ -61,6 +61,7 @@
         </div>
         <button type="submit">Login</button>
         <button id="logoutButton" type="button">Logout</button>
+        <button id="registerBtn" type="button">Register</button>
     </form>
 
         <!-- Register button linking to registration page -->
@@ -87,9 +88,26 @@
                 const data = await response.json();
                 if (response.ok) {
                     // Login successful, handle redirection or other actions
-                    alert('Login successful');
-                    localStorage.setItem('token', data.token); // Store token in local storage
-                    localStorage.setItem('refreshToken', data.refreshToken); // Store refresh token in local storage
+                    alert(data.message);
+                    //localStorage.setItem('token', data.token); // Store token in local storage
+                    //localStorage.setItem('refreshToken', data.refreshToken);
+                    //localStorage.setItem("userId", data.userId);
+                    sessionStorage.setItem("username", data.username);
+                    sessionStorage.setItem("userId", data.userId);
+                    window.location.href = "index.html"
+                //     alert('Login successful');
+                //     localStorage.setItem('token', data.token); // Store token in local storage
+                //     localStorage.setItem('refreshToken', data.refreshToken); // Store refresh token in local storage
+                //     const userDataResponse = await fetch('/user-data');
+                //     const userData = await userDataResponse.json();
+                //     console.log("You are here");
+                //     console.log(userData);
+                //     for (let i = 0; i < userData.data.length; i++) {
+                //     if (userData.data[i].email === email) {
+                //         userID = userData.data[i].id
+                //         console.log(userID);
+                //     } 
+                // }
                 } else {
                     // Login failed, display error message
                     alert(data.error || 'Login failed');
@@ -117,7 +135,8 @@
                     // Logout successful, handle redirection or other actions
                     alert('Logout successful');
                     localStorage.removeItem('token'); // Remove token from local storage
-                    localStorage.removeItem('refreshToken'); // Remove refresh token from local storage
+                    localStorage.removeItem('refreshToken');
+                    sessionStorage.removeItem("userId");
                 } else {
                     // Logout failed, display error message
                     alert(data.error || 'Logout failed');
