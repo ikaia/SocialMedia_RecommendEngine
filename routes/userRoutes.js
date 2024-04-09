@@ -3,7 +3,6 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const fs = require('fs');
 const session = require('express-session');
-const fs = require('fs');
 
 const pepper = 'your_pepper_value';
 
