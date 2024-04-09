@@ -11,26 +11,6 @@ class RecommendationEngine {
         this.userRatings = new Map();
     }
 
-writeAllRecommendationsToFile() {
-    const fileName = './application/data/mockRecommendations.json'; 
-    let data = {}; 
-    for (const user of this.userRatings.keys()) {
-        const existingUserRecommendations = data[user] || {};
-        const newUserRecommendations = this.getAllRecommendations(user);
-        for (const [movie, score] of newUserRecommendations.entries()) {
-            existingUserRecommendations[movie] = Math.min(5.0, existingUserRecommendations[movie] + score || score);
-        }
-
-        data[user] = existingUserRecommendations;
-    }
-
-    fs.writeFileSync(fileName, JSON.stringify(data, null, 2));
-    console.log(`Recommendations for all users written to ${fileName}`);
-}
-
-
-
-
     addRating(user, movieId, rating) {
         if (!this.userRatings.has(user)) {
             this.userRatings.set(user, new Map());
@@ -150,7 +130,6 @@ function getUserInput() {
 }
 */
 
-
 const capStoneEngine = new RecommendationEngine();
 
 for (const user of capStoneEngine.userRatings.keys()) {
@@ -160,7 +139,7 @@ for (const user of capStoneEngine.userRatings.keys()) {
     userRecommendations.forEach((score, item) => console.log(`${item}: ${score}`));
     console.log();
 }
-
+/*
 capStoneEngine.addRating("FakeUser_comedy", 3745, 5.0); 
 capStoneEngine.addRating("FakeUser_drama", 3746, 5.0);  
 capStoneEngine.addRating("FakeUser_history", 3747, 5.0);
@@ -178,6 +157,7 @@ capStoneEngine.addRating("FakeUser_animation", 3758, 5.0);
 capStoneEngine.addRating("FakeUser_scifi", 3759, 5.0); 
 capStoneEngine.addRating("FakeUser_war", 3760, 5.0); 
 capStoneEngine.addRating("FakeUser_european", 3761, 5.0); 
+*/
 
 for (const user of capStoneEngine.userRatings.keys()) {
     const userGenre = user.split('_')[1]; 
@@ -192,10 +172,8 @@ for (const user of capStoneEngine.userRatings.keys()) {
     }
 }
 
-capStoneEngine.writeAllRecommendationsToFile();
-
 console.log("This is an example of how to call for all of the recommendations and their associated scores for one user: ");
-//console.log(capStoneEngine.getAllRecommendations("testUser"));
+console.log(capStoneEngine.getAllRecommendations("FakeUser_comedy"));
 
 
 //getUserInput();
