@@ -65,7 +65,6 @@ router.post('/register', async (req, res) => {
         res.status(500).json({ error: 'Failed to register user' });
     }
 });
-
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
     console.log('Session data (login):', req.session);
@@ -78,12 +77,17 @@ router.post('/login', async (req, res) => {
         return res.status(404).json({ error: 'User not found' });
     }
 
-    // Compare passwords using bcrypt
-    const hashedPassword = user.hashedPassword;
-    const isPasswordValid = await bcrypt.compare(password + pepper, hashedPassword);
+    let isPasswordValid = false;
 
-    console.log('Password + Pepper:', password + pepper);
-    console.log('Hashed Password:', hashedPassword);
+    // Check if the password matches the hashed password
+    if (user.hashedPassword) {
+        // If the user has a hashed password, use bcrypt to compare
+        const hashedPassword = user.hashedPassword;
+        isPasswordValid = await bcrypt.compare(password + pepper, hashedPassword);
+    } else {
+        // If the user has a plain text password, compare directly
+        isPasswordValid = password === user.password;
+    }
 
     if (!isPasswordValid) {
         return res.status(401).json({ error: 'Invalid password' });

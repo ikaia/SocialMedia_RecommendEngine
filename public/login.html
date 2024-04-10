@@ -61,7 +61,6 @@
         </div>
         <button type="submit">Login</button>
         <button id="logoutButton" type="button">Logout</button>
-        <button id="registerBtn" type="button">Register</button>
     </form>
 
         <!-- Register button linking to registration page -->
@@ -137,6 +136,7 @@
                     localStorage.removeItem('token'); // Remove token from local storage
                     localStorage.removeItem('refreshToken');
                     sessionStorage.removeItem("userId");
+                    sessionStorage.removeItem("username");
                 } else {
                     // Logout failed, display error message
                     alert(data.error || 'Logout failed');

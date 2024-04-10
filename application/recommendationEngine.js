@@ -4,32 +4,12 @@
 //Engine works by checking similarity between users and creating a recommendation score based on the similarity level to other users
 const fs = require('fs');
 const userData = require('./data/mockUserData.json');
-const movies = require('./data/applicationData.json');
+const movies = require('./data/movieData.json');
 
 class RecommendationEngine {
     constructor() {
         this.userRatings = new Map();
     }
-
-writeAllRecommendationsToFile() {
-    const fileName = './application/data/mockRecommendations.json'; 
-    let data = {}; 
-    for (const user of this.userRatings.keys()) {
-        const existingUserRecommendations = data[user] || {};
-        const newUserRecommendations = this.getAllRecommendations(user);
-        for (const [movie, score] of newUserRecommendations.entries()) {
-            existingUserRecommendations[movie] = Math.min(5.0, existingUserRecommendations[movie] + score || score);
-        }
-
-        data[user] = existingUserRecommendations;
-    }
-
-    fs.writeFileSync(fileName, JSON.stringify(data, null, 2));
-    console.log(`Recommendations for all users written to ${fileName}`);
-}
-
-
-
 
     addRating(user, movieId, rating) {
         if (!this.userRatings.has(user)) {
@@ -150,7 +130,6 @@ function getUserInput() {
 }
 */
 
-
 const capStoneEngine = new RecommendationEngine();
 
 for (const user of capStoneEngine.userRatings.keys()) {
@@ -179,23 +158,22 @@ capStoneEngine.addRating("FakeUser_action", 9, 5.0);
 // capStoneEngine.addRating("FakeUser_war", 3760, 5.0); 
 // capStoneEngine.addRating("FakeUser_european", 3761, 5.0); 
 
+
 for (const user of capStoneEngine.userRatings.keys()) {
     const userGenre = user.split('_')[1]; 
     const userRatings = capStoneEngine.userRatings.get(user);
     for (const movie of movies) {
-        if (!userRatings || !userRatings.has(movie.id)) {
+        if (!userRatings || !userRatings.has(movie.movie_id)) {
             const genres = movie.genre.split(',').map(genre => genre.trim());
             if (genres.includes(userGenre)) {
-                capStoneEngine.addRating(user, movie.id, 5.0);
+                capStoneEngine.addRating(user, movie.movie_id, 5.0);
             }
         }
     }
 }
 
-capStoneEngine.writeAllRecommendationsToFile();
-
 console.log("This is an example of how to call for all of the recommendations and their associated scores for one user: ");
-//console.log(capStoneEngine.getAllRecommendations("testUser"));
+console.log(capStoneEngine.getAllRecommendations("FakeUser_comedy"));
 
 
 //getUserInput();
