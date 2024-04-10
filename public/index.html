@@ -207,11 +207,14 @@
       <!-- Script to show popup message -->
       <script>
         window.addEventListener('DOMContentLoaded', (event) => {
-            const isLoggedIn = localStorage.getItem('token') !== null; // Check if user is logged in
-            if (!isLoggedIn) {
-                document.getElementById('overlay').style.display = 'block'; // Show overlay
-                document.getElementById('popup').style.display = 'block'; // Show popup
-            }
+            const isLoggedIn = sessionStorage.getItem('username') !== null; // Check if user is logged in
+        if (!isLoggedIn) {
+            document.getElementById('overlay').style.display = 'block'; // Show overlay
+            document.getElementById('popup').style.display = 'block'; // Show popup
+        } else {
+            document.getElementById('overlay').style.display = 'none'; // Hide overlay
+            document.getElementById('popup').style.display = 'none'; // Hide popup
+        }
         });
     </script>
 </body>
