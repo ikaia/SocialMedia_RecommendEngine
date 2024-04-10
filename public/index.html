@@ -138,6 +138,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="login.html">Login</a>
                         </li>
+                        <li class="nav-item" id="usernamePlaceholder" style="display: none;">
+                            <span class="nav-link" id="loggedInUsername"></span>
+                        </li>
+                        
                     </ul>
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -205,6 +209,29 @@
   }
   return data;
     }
+    window.addEventListener('DOMContentLoaded', (event) => {
+    const isLoggedIn = sessionStorage.getItem('username') !== null; // Check if user is logged in
+    const loggedInUsername = sessionStorage.getItem('username'); // Get logged-in username
+
+    if (isLoggedIn) {
+        document.getElementById('usernamePlaceholder').style.display = 'block'; // Show username placeholder
+        document.getElementById('loggedInUsername').textContent = loggedInUsername; // Update username content
+    } else {
+        document.getElementById('usernamePlaceholder').style.display = 'none'; // Hide username placeholder
+    }
+});
+window.addEventListener('DOMContentLoaded', (event) => {
+    const isLoggedIn = sessionStorage.getItem('username') !== null; // Check if user is logged in
+    const loggedInUsername = sessionStorage.getItem('username'); // Get logged-in username
+
+    if (isLoggedIn) {
+        document.getElementById('usernamePlaceholder').style.display = 'block'; // Show username placeholder
+        document.getElementById('loggedInUsername').textContent = "Welcome, " + loggedInUsername; 
+    } else {
+        document.getElementById('usernamePlaceholder').style.display = 'none'; // Hide username placeholder
+    }
+});
+
  </script>
 
       <!-- Script to show popup message -->

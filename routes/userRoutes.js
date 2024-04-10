@@ -8,7 +8,7 @@ const pepper = 'your_pepper_value';
 
 // Configure express-session middleware
 router.use(session({
-    secret: 'your_secret_key', // Change this to a random string
+    secret: 'your_secret_key', 
     resave: false,
     saveUninitialized: false,
 }));
@@ -62,7 +62,7 @@ router.post('/register', async (req, res) => {
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Failed to register user' });
+        res.status(500).json({ error: 'Failed to register user'});
     }
 });
 router.post('/login', async (req, res) => {
