@@ -12,10 +12,10 @@ router.get('/character', function(req, res, next) {
     res.send(html);
 });
 
-router.get('/userRating/:userId', function(req, res, next) {
+router.get('/userRating/:username', function(req, res, next) {
 
     appController = new applicationController();
-    html = appController.getUserRecommendations(req.params.userId);
+    html = appController.getUserRecommendations(req.params.username);
     res.send(html);
 });
 
@@ -28,6 +28,7 @@ router.post('/addRating', function(req, res, next) {
     html = appController.getUserRecommendations(data.username);
     res.send(html);
 });
+
 
 router.get('/test', function(req, res, next) {
 

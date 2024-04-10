@@ -17,14 +17,64 @@ function getAll() {
 // Iterate through each character and create a clickable link in the 'topmatter' element
 console.log(getAll());
 let characters = getAll();
-characters.forEach(element => {
-  let linkNode = document.createElement('div');
-  //linkNode.innerText = element;
-  linkNode.setAttribute('onclick', `populateChar(${element.id})`);
-  topElement.appendChild(linkNode);
-  // Create and append character cards side by side
-  createCharacterCard(element);
-});
+showAllMovies();
+// characters.forEach(element => {
+//   let linkNode = document.createElement('div');
+//   //linkNode.innerText = element;
+//   linkNode.setAttribute('onclick', `populateChar(${element.id})`);
+//   topElement.appendChild(linkNode);
+//   // Create and append character cards side by side
+//   createCharacterCard(element);
+// });
+
+function showAllMovies(){
+  let displayDiv = document.getElementById("characterCardsContainer");
+
+  displayDiv.innerHTML = "";
+  characters.forEach(element => {
+    let linkNode = document.createElement('div');
+    //linkNode.innerText = element;
+    linkNode.setAttribute('onclick', `populateChar(${element.id})`);
+    topElement.appendChild(linkNode);
+    // Create and append character cards side by side
+    createCharacterCard(element);
+  });
+}
+
+function showRecommended(){
+  var xhttp = new XMLHttpRequest();
+  let username = sessionStorage.getItem("username")
+  let recommendations;
+  xhttp.open('GET', `http://localhost:3050/api/userRating/${username}`, false);
+  xhttp.setRequestHeader('Accept', 'application/json');
+  xhttp.send();
+  if (xhttp.status == 200) {
+    recommendations = JSON.parse(xhttp.responseText);
+  } else {
+    alert("There is something wrong.  Please try again later.");
+  }
+  recommendations = [[9,3],[2,4],[5,5], [6,2], [7,1]]
+  let displayRec = recommendations.filter(e => (e[1] >= 3))
+  displayRec.sort((a,b) => (b[1] - a[1]))
+
+  let displayDiv = document.getElementById("characterCardsContainer");
+
+  displayDiv.innerHTML = "";
+
+  displayRec.forEach(e => {
+    let movie = characters.find(x => x.id == e[0])
+    let linkNode = document.createElement('div');
+    //linkNode.innerText = element;
+    linkNode.setAttribute('onclick', `populateChar(${movie.id})`);
+    topElement.appendChild(linkNode);
+    // Create and append character cards side by side
+    createCharacterCard(movie);
+  });
+
+  
+
+
+}
 
 function getOne(id) {
   let xhttp = new XMLHttpRequest();

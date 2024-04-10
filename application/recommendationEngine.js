@@ -161,23 +161,23 @@ for (const user of capStoneEngine.userRatings.keys()) {
     console.log();
 }
 
-capStoneEngine.addRating("FakeUser_comedy", 3745, 5.0); 
-capStoneEngine.addRating("FakeUser_drama", 3746, 5.0);  
-capStoneEngine.addRating("FakeUser_history", 3747, 5.0);
-capStoneEngine.addRating("FakeUser_romance", 3748, 5.0); 
-capStoneEngine.addRating("FakeUser_crime", 3749, 5.0); 
-capStoneEngine.addRating("FakeUser_thriller", 3750, 5.0); 
-capStoneEngine.addRating("FakeUser_music", 3751, 5.0); 
-capStoneEngine.addRating("FakeUser_documentation", 3752, 5.0); 
-capStoneEngine.addRating("FakeUser_action", 3753, 5.0); 
-capStoneEngine.addRating("FakeUser_family", 3754, 5.0); 
-capStoneEngine.addRating("FakeUser_horror", 3755, 5.0); 
-capStoneEngine.addRating("FakeUser_sport", 3756, 5.0); 
-capStoneEngine.addRating("FakeUser_fantasy", 3757, 5.0); 
-capStoneEngine.addRating("FakeUser_animation", 3758, 5.0); 
-capStoneEngine.addRating("FakeUser_scifi", 3759, 5.0); 
-capStoneEngine.addRating("FakeUser_war", 3760, 5.0); 
-capStoneEngine.addRating("FakeUser_european", 3761, 5.0); 
+capStoneEngine.addRating("FakeUser_comedy", 1, 5.0); 
+capStoneEngine.addRating("FakeUser_drama", 2, 5.0);  
+capStoneEngine.addRating("FakeUser_history", 3, 5.0);
+capStoneEngine.addRating("FakeUser_romance", 4, 5.0); 
+capStoneEngine.addRating("FakeUser_crime", 5, 5.0); 
+capStoneEngine.addRating("FakeUser_thriller", 6, 5.0); 
+capStoneEngine.addRating("FakeUser_music", 7, 5.0); 
+capStoneEngine.addRating("FakeUser_documentation", 8, 5.0); 
+capStoneEngine.addRating("FakeUser_action", 9, 5.0); 
+// capStoneEngine.addRating("FakeUser_family", 3754, 5.0); 
+// capStoneEngine.addRating("FakeUser_horror", 3755, 5.0); 
+// capStoneEngine.addRating("FakeUser_sport", 3756, 5.0); 
+// capStoneEngine.addRating("FakeUser_fantasy", 3757, 5.0); 
+// capStoneEngine.addRating("FakeUser_animation", 3758, 5.0); 
+// capStoneEngine.addRating("FakeUser_scifi", 3759, 5.0); 
+// capStoneEngine.addRating("FakeUser_war", 3760, 5.0); 
+// capStoneEngine.addRating("FakeUser_european", 3761, 5.0); 
 
 for (const user of capStoneEngine.userRatings.keys()) {
     const userGenre = user.split('_')[1]; 
