@@ -2,19 +2,31 @@
 
 ### Social Media Recommendation Engine
 
-### Introduction
+### <ins>Introduction<ins>
 <p>The purpose of our website is to used as a recommendation system for movies that suggests content to users based on their interests and viewing habits.</p>
 <p>We achieved this using a collaborative filtering technique by determining what similar users are and how to use that to send recommendations to one another.</p>
 
 <p>The site is written in vanilla JS using the Node.js framework, while also utilizing HTML/CSS elements. </p>
 
-## Team Geek Videos Members
-Ikaia Melton <br>
-Crystal Byrd <br>
-Michael Minnick <br>
-Tim McCarty <br>
+## Table of Contents
+- [Introduction](#introduction)
+- [Team Geek Videos Members](team-geek-videos-members)
+- [Startup](startup)
+- [Website Guid](website-guide)
+    - [Landing Page](landing-page)
+    - [Home/All Movies Page](home-/-all-movies-page)
+    - [Recommended Movies Page](recommended-movies-page)
+    - [Login/Registration Page](login-/-registration-page)
+ 
+  <br>
 
-## How to install
+## Team Geek Videos Members
+_Ikaia Melton_ <br>
+_Crystal Byrd_ <br>
+_Michael Minnick_ <br>
+_Tim McCarty_ <br>
+
+## Starting the Site
 
 1. **npm install**
 2. **node app.js**
