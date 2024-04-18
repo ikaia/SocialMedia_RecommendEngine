@@ -10,13 +10,13 @@
 
 ## Table of Contents
 - [Introduction](#introduction)
-- [Team Geek Videos Members](team-geek-videos-members)
-- [Startup](startup)
-- [Website Guid](website-guide)
-    - [Landing Page](landing-page)
-    - [Home/All Movies Page](home-/-all-movies-page)
-    - [Recommended Movies Page](recommended-movies-page)
-    - [Login/Registration Page](login-/-registration-page)
+- [Team Geek Videos Members](#team-geek-videos-members)
+- [Startup](#startup)
+- [Website Guid](#website-guide)
+    - [Landing Page](#landing-page)
+    - [Home/All Movies Page](#home-/-all-movies-page)
+    - [Recommended Movies Page](#recommended-movies-page)
+    - [Login/Registration Page](#login-/-registration-page)
  
   <br>
 
