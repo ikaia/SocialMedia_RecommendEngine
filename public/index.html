@@ -105,7 +105,7 @@
     <nav class="navbar" style="background-color: #000000;">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Wiki</a>
+                <a class="navbar-brand" href="#" style="color: red;">GV</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                     aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -121,32 +121,20 @@
                         <li class="nav-item">
                             <a class="nav-link" onclick=showRecommended()>Recommended Movies</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Favorites
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="login.html">Login</a>
+                        <li>
+                        <div class="dropdown">
+                        <button class="btn btn-link" type="button" data-toggle="dropdown">Account<span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a class="btn btn-link" href="login.html">Login</a></li>
+                            <li><a class="btn btn-link" href="register.html">Register</a></li>
+                            <li><button class="btn btn-link" id="logoutButton" type="button">Logout</button></li>
+                        </ul>
+                    </div>
                         </li>
                         <li class="nav-item" id="usernamePlaceholder" style="display: none;">
                             <span class="nav-link" id="loggedInUsername"></span>
                         </li>
-                        
                     </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
                 </div>
             </div>
         </nav>
@@ -247,6 +235,37 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         });
     </script>
+
+<script>
+    document.getElementById('logoutButton').addEventListener('click', async function () {
+        try {
+            const response = await fetch('/user/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                // Logout successful, handle redirection or other actions
+                alert('Logout successful');
+                localStorage.removeItem('token'); // Remove token from local storage
+                localStorage.removeItem('refreshToken');
+                sessionStorage.removeItem("userId");
+                sessionStorage.removeItem("username");
+                location.reload();
+            } else {
+                // Logout failed, display error message
+                alert(data.error || 'Logout failed');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again later.');
+        }
+    });
+</script>
+
 </body>
 
 </html>
