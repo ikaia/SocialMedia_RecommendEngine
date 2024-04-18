@@ -61,9 +61,9 @@ _Tim McCarty_ <br>
 <p>The Login and Registration page were made with the users security in mind each account that is made gets some salt and pepper to make it extra difficult for anyone looking to get into your Geek Videos account</p>
 
 <p align="left">
-  <img src="public/readImages/LoginWindow.png" width="400" height="150">
+  <img src="public/readImages/LoginWindow.png" width="400" height="125">
 </p>
 
 <p align="left">
-  <img src="public/readImages/RegistrationWindow.png" width="400" height="150">
+  <img src="public/readImages/RegistrationWindow.png" width="400" height="125">
 </p>
