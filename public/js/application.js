@@ -34,7 +34,7 @@ function showAllMovies(){
   characters.forEach(element => {
     let linkNode = document.createElement('div');
     //linkNode.innerText = element;
-    linkNode.setAttribute('onclick', `populateChar(${element.id})`);
+    linkNode.setAttribute('onclick', `populateChar(${element.movie_id})`);
     topElement.appendChild(linkNode);
     // Create and append character cards side by side
     createCharacterCard(element);
@@ -53,7 +53,8 @@ function showRecommended(){
   } else {
     alert("There is something wrong.  Please try again later.");
   }
-  recommendations = [[9,3],[2,4],[5,5], [6,2], [7,1]]
+  console.log(recommendations);
+  //recommendations = [[9,3],[2,4],[5,5], [6,2], [7,1]]
   let displayRec = recommendations.filter(e => (e[1] >= 3))
   displayRec.sort((a,b) => (b[1] - a[1]))
 
