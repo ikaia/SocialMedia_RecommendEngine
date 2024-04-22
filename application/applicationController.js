@@ -80,6 +80,11 @@ class application {
         this.recommendationEngine.addTestData();
     }
 
+    reloadUsers(){
+
+        this.recommendationEngine.reloadUsers()
+    }
+
 }
 
 

@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const fs = require('fs');
 const session = require('express-session');
+var applicationController = require('../application/applicationController');
 
 const pepper = 'your_pepper_value';
 
@@ -58,6 +59,11 @@ router.post('/register', async (req, res) => {
 
         // Write updated user data back to the JSON file
         fs.writeFileSync('application/data/mockUserData.json', JSON.stringify(users, null, 2));
+
+        appController = new applicationController();
+
+        appController.reloadUsers()
+
 
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {

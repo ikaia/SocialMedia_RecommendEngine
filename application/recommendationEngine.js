@@ -3,12 +3,19 @@
 //Group Members: Crystal Byrd, Tim McCarty, Ikaia Melton, Michael Minnick
 //Engine works by checking similarity between users and creating a recommendation score based on the similarity level to other users
 const fs = require('fs');
-const userData = require('./data/mockUserData.json');
+//let userData = require('./data/mockUserData.json');
+let userData
 const movies = require('./data/movieData.json');
 
 class RecommendationEngine {
     constructor() {
+        userData = JSON.parse(fs.readFileSync('./application/data/mockUserData.json'))
         this.userRatings = new Map();
+    }
+
+    reloadUsers(){
+        userData = JSON.parse(fs.readFileSync('./application/data/mockUserData.json'))
+        console.log(this.userData)
     }
 
     addRating(user, movieId, rating) {
