@@ -17,7 +17,7 @@ function getAll() {
 // Iterate through each character and create a clickable link in the 'topmatter' element
 console.log(getAll());
 let characters = getAll();
-showAllMovies();
+//showAllMovies();
 // characters.forEach(element => {
 //   let linkNode = document.createElement('div');
 //   //linkNode.innerText = element;
@@ -41,7 +41,7 @@ function showAllMovies(){
   });
 }
 
-function showRecommended(){
+function showRecommended(pageNumber){
   var xhttp = new XMLHttpRequest();
   let username = sessionStorage.getItem("username")
   let recommendations;
@@ -53,26 +53,31 @@ function showRecommended(){
   } else {
     alert("There is something wrong.  Please try again later.");
   }
-  console.log(recommendations);
+  //console.log(recommendations);
   //recommendations = [[9,3],[2,4],[5,5], [6,2], [7,1]]
   let displayRec = recommendations.filter(e => (e[1] >= 3))
   displayRec.sort((a,b) => (b[1] - a[1]))
 
+  const startIndex = (pageNumber - 1) * moviesPerPage;
+  const endIndex = startIndex + moviesPerPage;
+
   let displayDiv = document.getElementById("characterCardsContainer");
 
+  displayDiv.dataset.display = "recommended"
+  displayDiv.dataset.movieCount = displayRec.length
   displayDiv.innerHTML = "";
 
+  displayRec = displayRec.slice(startIndex, endIndex);
+  
   displayRec.forEach(e => {
-    let movie = characters.find(x => x.id == e[0])
+    let movie = characters.find(x => x.movie_id == e[0])
     let linkNode = document.createElement('div');
     //linkNode.innerText = element;
-    linkNode.setAttribute('onclick', `populateChar(${movie.id})`);
+    linkNode.setAttribute('onclick', `populateChar(${movie.movie_id})`);
     topElement.appendChild(linkNode);
     // Create and append character cards side by side
     createCharacterCard(movie);
   });
-
-  
 
 
 }
@@ -220,6 +225,8 @@ function displayMoviesForPage(pageNumber) {
     const moviesToShow = characters.slice(startIndex, endIndex);
 
     let displayDiv = document.getElementById("characterCardsContainer");
+    displayDiv.dataset.display = "all"
+    displayDiv.dataset.movieCount = characters.length
     displayDiv.innerHTML = ""; // Clear previous movies
 
     moviesToShow.forEach(movie => {
@@ -229,18 +236,34 @@ function displayMoviesForPage(pageNumber) {
 
 // Function to show next page of movies
 function showNextPage() {
-    const totalPages = Math.ceil(characters.length / moviesPerPage);
+  let displayDiv = document.getElementById("characterCardsContainer");
+  const displayType = displayDiv.dataset.display
+  const movieCount = displayDiv.dataset.movieCount
+    const totalPages = Math.ceil(movieCount / moviesPerPage);
     if (currentPage < totalPages) {
         currentPage++;
-        displayMoviesForPage(currentPage);
+        if(displayType == "all"){
+          displayMoviesForPage(currentPage);
+        }else{
+          showRecommended(currentPage)
+        }
+        
     }
 }
 
 // Function to show previous page of movies
 function showPreviousPage() {
+  let displayDiv = document.getElementById("characterCardsContainer");
+  const displayType = displayDiv.dataset.display
+    
     if (currentPage > 1) {
         currentPage--;
-        displayMoviesForPage(currentPage);
+        if(displayType == "all"){
+          displayMoviesForPage(currentPage);
+        }else{
+          showRecommended(currentPage)
+        }
+        
     }
 }
 

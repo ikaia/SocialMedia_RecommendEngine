@@ -119,7 +119,7 @@
                             <a class="nav-link" onclick=displayMoviesForPage(1)>All Movies</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" onclick=showRecommended()>Recommended Movies</a>
+                            <a class="nav-link" onclick=showRecommended(1)>Recommended Movies</a>
                         </li>
                         <li>
                         <div class="dropdown">
@@ -161,22 +161,14 @@
         </div>
     
         <!-- Character Cards Section -->
-        <div class="row row-cols-1 row-cols-md-3 g-4" id="characterCardsContainer">
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="characterCardsContainer" data-display="all">
             <!-- Character Card Displays Here -->
             <div id="topmatter"></div>
             <div id="bottommatter"></div>
             <nav class="navbar" style="background-color: #121212;"></nav> <!--A white cube to push down the cards-->
         </div>
     </div>
-    <!-- Character Cards Section Container From Bootstrap -->
-    <div class="container mt-5">
-        <div class="row row-cols-1 row-cols-md-3 g-4" id="characterCardsContainer">
-            <!-- Character Card Displays Here -->
-            <div id="topmatter"></div>
-            <div id="bottommatter"></div>
-            <nav class="navbar" style="background-color: #121212;"></nav> <!--A white cube to push down the cards-->
-        </div>
-    </div>
+    
 <!-- Modal for displaying the larger card bootstrap-->
 <div class="modal fade" id="cardModal" tabindex="-1" role="dialog" aria-labelledby="cardModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

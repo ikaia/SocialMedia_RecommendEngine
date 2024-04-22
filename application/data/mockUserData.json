@@ -28942,5 +28942,22 @@
         "rating": 2
       }
     ]
+  },
+  {
+    "id": 20,
+    "email": "fakemail@gmail.com",
+    "username": "abcd",
+    "hashedPassword": "$2b$10$bzXa39HlOiq6JUvBttakkuNfMso0bszi9hHX3ZfWemuhLGQ7EWcO6",
+    "salt": "$2b$10$bzXa39HlOiq6JUvBttakku",
+    "ratings": [
+      {
+        "movie_id": 1,
+        "rating": 4
+      },
+      {
+        "movie_id": 2,
+        "rating": 5
+      }
+    ]
   }
 ]
