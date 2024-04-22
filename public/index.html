@@ -151,7 +151,23 @@
         <h2>Sign up for your own personalized list of movie recommendations</h2>
         <button onclick="location.href='login.html'">Sign Up</button>
     </div>
-
+    <div class="container mt-5">
+        <!-- Pagination Controls -->
+        <div class="row">
+            <div class="col text-center">
+                <button id="previousPageBtn" class="btn btn-primary" onclick="showPreviousPage()">Previous</button>
+                <button id="nextPageBtn" class="btn btn-primary" onclick="showNextPage()">Next</button>
+            </div>
+        </div>
+    
+        <!-- Character Cards Section -->
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="characterCardsContainer">
+            <!-- Character Card Displays Here -->
+            <div id="topmatter"></div>
+            <div id="bottommatter"></div>
+            <nav class="navbar" style="background-color: #121212;"></nav> <!--A white cube to push down the cards-->
+        </div>
+    </div>
     <!-- Character Cards Section Container From Bootstrap -->
     <div class="container mt-5">
         <div class="row row-cols-1 row-cols-md-3 g-4" id="characterCardsContainer">

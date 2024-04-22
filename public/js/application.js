@@ -147,10 +147,9 @@ function createCharacterCard(element) {
   // Each character card includes the character name, description, and full-size image
   let cardContentScript = `
             <div class="card h-100 shadow">
-                <img src="img/${element.image}" class="card-img-top" alt="${element.name}" style="object-fit: cover;">
                 <div class="card-body">
-                    <h5 class="card-title text-center">${element.name}</h5> <!-- Centered title -->
-                    <p class="card-text">${element.desc}</p>
+                    <h5 class="card-title text-center">${element.title}</h5> <!-- Centered title -->
+                    <p class="card-text">${element.genre}</p>
                     <span class="heart-icon">&#10084;</span> <!-- Added empty heart icon added an id-->
                 </div>
             </div>
@@ -180,11 +179,10 @@ function showLargerCard(element) {
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button> 
-        <img src="img/${element.image}" style= "object-fit: cover;">
-        <class="img-fluid" alt="${element.name}">
-        <h2>${element.name}</h2>
-        <p>${element.desc}</p>
-        <div class="rating" id="ratingDiv" data-id="${element.id}">
+        <class="img-fluid" alt="${element.title}">
+        <h2>${element.title}</h2>
+        <p>${element.genre}</p>
+        <div class="rating" id="ratingDiv" data-id="${element.movie_id}">
         <input type="radio" id="star5" name="rating" value="5">
         <span onclick="setRating()"><label for="star5">☆</label></span>
         <input type="radio" id="star4" name="rating" value="4">
@@ -210,3 +208,41 @@ function closeModal() {
   let modal = new bootstrap.Modal(document.getElementById('cardModal'));//I try tto make it close by repeating itself
   modal.hide();
 }
+
+let currentPage = 1; // Initialize current page to 1
+const moviesPerPage = 9; // Number of movies to display per page
+
+// Function to display movies for the current page
+function displayMoviesForPage(pageNumber) {
+    const startIndex = (pageNumber - 1) * moviesPerPage;
+    const endIndex = startIndex + moviesPerPage;
+    const moviesToShow = characters.slice(startIndex, endIndex);
+
+    let displayDiv = document.getElementById("characterCardsContainer");
+    displayDiv.innerHTML = ""; // Clear previous movies
+
+    moviesToShow.forEach(movie => {
+        createCharacterCard(movie);
+    });
+}
+
+// Function to show next page of movies
+function showNextPage() {
+    const totalPages = Math.ceil(characters.length / moviesPerPage);
+    if (currentPage < totalPages) {
+        currentPage++;
+        displayMoviesForPage(currentPage);
+    }
+}
+
+// Function to show previous page of movies
+function showPreviousPage() {
+    if (currentPage > 1) {
+        currentPage--;
+        displayMoviesForPage(currentPage);
+    }
+}
+
+// Initially display movies for the first page
+displayMoviesForPage(currentPage);
+

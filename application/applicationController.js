@@ -9,7 +9,7 @@ class application {
     
 
     constructor(){
-        this.data = JSON.parse(fs.readFileSync('./application/data/applicationData.json').toString());
+        this.data = JSON.parse(fs.readFileSync('./application/data/movieData.json').toString());
 
     }
 
