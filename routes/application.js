@@ -19,6 +19,12 @@ router.get('/userRating/:username', function(req, res, next) {
     res.send(html);
 });
 
+router.get('/currentRatings/:username', function(req, res, next){
+
+    appController = new applicationController();
+    res.send(appController.getUserRatings(req.params.username));
+})
+
 
 router.post('/addRating', function(req, res, next) {
     //  /addRating?user=User1&movie=King Kong&rating=4

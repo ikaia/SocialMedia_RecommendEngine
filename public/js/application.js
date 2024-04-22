@@ -1,10 +1,28 @@
 let topElement = document.getElementById('topmatter');
 let bottomElement = document.getElementById('bottommatter');
+let characters = getAll();
+let ratings = getRatings()
+
+function getRatings(){
+  var xhttp = new XMLHttpRequest();
+  let username = sessionStorage.getItem("username")
+  let data = '';
+  xhttp.open('GET', `http://localhost:3050/api/currentRatings/${username}`, false);
+  xhttp.setRequestHeader('Accept', 'application/json');
+  xhttp.send();
+  if (xhttp.status == 200) {
+    data = JSON.parse(xhttp.responseText);
+  } else {
+    alert("There is something wrong.  Please try again later.");
+  }
+  return data;
+
+}
 
 function getAll() {
   var xhttp = new XMLHttpRequest();
   let data = '';
-  xhttp.open('GET', 'http://localhost:3050/api/character', false);
+  xhttp.open('GET', 'http://localhost:3050/api/character/', false);
   xhttp.setRequestHeader('Accept', 'application/json');
   xhttp.send();
   if (xhttp.status == 200) {
@@ -15,8 +33,7 @@ function getAll() {
   return data;
 }
 // Iterate through each character and create a clickable link in the 'topmatter' element
-console.log(getAll());
-let characters = getAll();
+//console.log(getAll());
 //showAllMovies();
 // characters.forEach(element => {
 //   let linkNode = document.createElement('div');
@@ -68,7 +85,7 @@ function showRecommended(pageNumber){
   displayDiv.innerHTML = "";
 
   displayRec = displayRec.slice(startIndex, endIndex);
-  
+
   displayRec.forEach(e => {
     let movie = characters.find(x => x.movie_id == e[0])
     let linkNode = document.createElement('div');
@@ -180,6 +197,14 @@ function showLargerCard(element) {
   let modal = new bootstrap.Modal(document.getElementById('cardModal'));
   let modalBody = document.querySelector('.modal-body');
 
+  let movieRating
+  if(ratings){
+    movieRating = ratings.find(e => e.movie_id == element.movie_id)
+    if(movieRating){
+      movieRating = movieRating.rating
+    }
+  }
+
   //Each character card include the character name, description, full size image and a closing button
   let largerCardContentScript = `
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -189,15 +214,15 @@ function showLargerCard(element) {
         <h2>${element.title}</h2>
         <p>${element.genre}</p>
         <div class="rating" id="ratingDiv" data-id="${element.movie_id}">
-        <input type="radio" id="star5" name="rating" value="5">
+        <input type="radio" id="star5" name="rating" value="5" ${movieRating == 5 ? "checked" : ""}>
         <span onclick="setRating()"><label for="star5">☆</label></span>
-        <input type="radio" id="star4" name="rating" value="4">
+        <input type="radio" id="star4" name="rating" value="4" ${movieRating == 4 ? "checked" : ""}>
   <span onclick="setRating()"><label for="star4">☆</label></span>
-  <input type="radio" id="star3" name="rating" value="3">
+  <input type="radio" id="star3" name="rating" value="3" ${movieRating == 3 ? "checked" : ""}>
   <span onclick="setRating()"><label for="star3">☆</label></span>
-  <input type="radio" id="star2" name="rating" value="2">
+  <input type="radio" id="star2" name="rating" value="2" ${movieRating == 2 ? "checked" : ""}>
   <span onclick="setRating()"><label for="star2">☆</label></span>
-  <input type="radio" id="star1" name="rating" value="1">
+  <input type="radio" id="star1" name="rating" value="1" ${movieRating == 1 ? "checked" : ""}>
   <span onclick="setRating()"><label for="star1">☆</label></span>
 </div>
     `;

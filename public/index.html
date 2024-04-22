@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/css copy/style.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="/js/application.js" defer></script>
-    <script src="scripts.js"></script>
+    <!-- <script src="scripts.js"></script> -->
 </head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
@@ -202,6 +202,15 @@
     data = JSON.parse(xhttp.responseText);
   } else {
     alert("There is something wrong.  Please try again later.");
+  }
+
+  document.getElementById("star"+rating).checked = true
+
+  let foundRating = ratings.find(e => e.movie_id == parseInt(movieId))
+  if(foundRating){
+    foundRating.rating = parseInt(rating)
+  }else{
+    ratings.push({rating: parseInt(rating),movie_id: parseInt(movieId)})
   }
   return data;
     }

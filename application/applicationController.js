@@ -13,6 +13,15 @@ class application {
 
     }
 
+    getUserRatings(username){
+        let users = JSON.parse(fs.readFileSync('./application/data/mockUserData.json').toString());
+        let userData = users.find(e => e.username == username)
+        if(userData){
+            return userData.ratings
+        }
+        return null
+    }
+
     getAllCharacters() {
         return JSON.stringify(this.data);
 
