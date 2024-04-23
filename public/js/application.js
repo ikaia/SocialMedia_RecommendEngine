@@ -96,6 +96,8 @@ function showRecommended(pageNumber){
     createCharacterCard(movie);
   });
 
+  displayRecTitle()
+
 
 }
 
@@ -230,6 +232,17 @@ function showLargerCard(element) {
   modal.show();
 }
 
+function displayRecTitle(){
+  let header = document.getElementById("displayType")
+  header.innerHTML = ""
+  header.innerHTML = "Recommended Movies"
+}
+function displayAllTitle(){
+  let header = document.getElementById("displayType")
+  header.innerHTML = ""
+  header.innerHTML = "All Movies"
+}
+
 function rateMovie(rating) {
   console.log("Rated movie with rating: " + rating);
 }
@@ -257,6 +270,8 @@ function displayMoviesForPage(pageNumber) {
     moviesToShow.forEach(movie => {
         createCharacterCard(movie);
     });
+
+    displayAllTitle()
 }
 
 // Function to show next page of movies
