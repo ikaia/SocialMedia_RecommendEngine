@@ -263,50 +263,89 @@ function displayMoviesForPage(pageNumber) {
     const moviesToShow = characters.slice(startIndex, endIndex);
 
     let displayDiv = document.getElementById("characterCardsContainer");
-    displayDiv.dataset.display = "all"
-    displayDiv.dataset.movieCount = characters.length
     displayDiv.innerHTML = ""; // Clear previous movies
 
     moviesToShow.forEach(movie => {
         createCharacterCard(movie);
     });
-
-    displayAllTitle()
 }
 
 // Function to show next page of movies
 function showNextPage() {
-  let displayDiv = document.getElementById("characterCardsContainer");
-  const displayType = displayDiv.dataset.display
-  const movieCount = displayDiv.dataset.movieCount
-    const totalPages = Math.ceil(movieCount / moviesPerPage);
+    const totalPages = Math.ceil(characters.length / moviesPerPage);
     if (currentPage < totalPages) {
         currentPage++;
-        if(displayType == "all"){
-          displayMoviesForPage(currentPage);
-        }else{
-          showRecommended(currentPage)
-        }
-        
+        displayMoviesForPage(currentPage);
+        updatePaginationInfo(currentPage, totalPages); // Update pagination info
     }
 }
 
 // Function to show previous page of movies
 function showPreviousPage() {
-  let displayDiv = document.getElementById("characterCardsContainer");
-  const displayType = displayDiv.dataset.display
-    
     if (currentPage > 1) {
         currentPage--;
-        if(displayType == "all"){
-          displayMoviesForPage(currentPage);
-        }else{
-          showRecommended(currentPage)
-        }
-        
+        displayMoviesForPage(currentPage);
+        updatePaginationInfo(currentPage, totalPages); // Update pagination info
     }
 }
 
+// Function to update pagination information
+function updatePaginationInfo(currentPage, totalPages) {
+    const paginationInfo = document.getElementById("paginationInfo");
+    paginationInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+}
+
+// Function to search for a movie and find the page it's on
+function searchMovie() {
+  const searchInput = document.getElementById('searchInput').value.trim();
+  if (!searchInput) {
+      alert('Please enter a movie title to search.');
+      return;
+  }
+
+  const index = characters.findIndex(movie => movie.title.toLowerCase().includes(searchInput.toLowerCase()));
+  if (index === -1) {
+      alert('Movie not found.');
+      return;
+  }
+
+  const pageNumber = Math.ceil((index + 1) / moviesPerPage);
+  scrollToPage(pageNumber);
+}
+
+// Function to scroll to a specific page
+function scrollToPage(pageNumber) {
+  // Scroll to the top of the page
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Display movies for the specified page
+  displayMoviesForPage(pageNumber);
+
+  // Update pagination info
+  const totalPages = Math.ceil(characters.length / moviesPerPage);
+  updatePaginationInfo(pageNumber, totalPages);
+}
+
+// Add event listener to search button
+document.getElementById('searchBtn').addEventListener('click', searchMovie);
+
+
 // Initially display movies for the first page
 displayMoviesForPage(currentPage);
+
+// Update pagination info on initial load
+const totalPages = Math.ceil(characters.length / moviesPerPage);
+updatePaginationInfo(currentPage, totalPages);
+
+// Function to handle keyup event on the search input
+function handleSearchInput(event) {
+  if (event.key === 'Enter') {
+      searchMovie();
+  }
+}
+
+// Add event listener to search input for keyup events
+document.getElementById('searchInput').addEventListener('keyup', handleSearchInput);
+
+
 

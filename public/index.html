@@ -151,6 +151,7 @@
                         <span class="nav-link" id="loggedInUsername"></span>
                     </li>
                 </ul>
+                <button class="btn btn-sm btn-primary ms-auto" onclick="toggleDarkMode()">Light/Dark Mode</button>
             </div>
         </div>
     </nav>
@@ -206,10 +207,17 @@
                     background-color: #171717; /* Dark background color for header in dark mode */
                     color: #ffffff; /* Light text color for header in dark mode */
                 }
+                 /* Styles for the usernamePlaceholder */
+                #usernamePlaceholder {
+                    color: #ffffff; /* Dark text color for username placeholder */
+                }
+
+                body.dark-mode #usernamePlaceholder {
+                    color: #ffffff; /* Light text color for username placeholder in dark mode */
+                }
             </style>
         </head>
         <body>
-            <button onclick="toggleDarkMode()">Light/Dark Mode</button>
        
             <!-- Modal for displaying the larger card bootstrap-->
             <div class="modal fade" id="cardModal" tabindex="-1" role="dialog" aria-labelledby="cardModalLabel" aria-hidden="true">
@@ -316,7 +324,6 @@
                 <img class="cinematic-image" src="alot.jpg" alt="Princess Fiona" width="1300" height="300">
                 <!-- Image caption -->
                 <div class="image-caption">
-                    Watch Free Movies With Unlimited Categories
                 </div>
             </div>
             <h2 id="displayType"></h2>
@@ -336,7 +343,22 @@
         <h2>Sign up for your own personalized list of movie recommendations</h2>
         <button onclick="location.href='login.html'">Sign Up</button>
     </div>
+    <!-- Search input and button -->
+<div class="row mt-3">
+    <div class="col-md-6 offset-md-3">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for a movie..." id="searchInput">
+            <button class="btn btn-primary" type="button" id="searchBtn">Search</button>
+        </div>
+    </div>
+</div>
+
+    <!-- Pagination Information -->
     <div class="container mt-5">
+        <div class="row mt-3">
+            <div class="col text-center" id="paginationInfo"></div>
+        </div>
+        
         <!-- Pagination Controls -->
         <div class="row">
             <div class="col text-center">
