@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <title>Social Media Recommended Engine</title>
     <!-- Bootstrap Style Sheet Imported and URL -->
     <link rel="stylesheet" type="text/css" href="/css copy/style.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="/js/application.js" defer></script>
-    <!-- <script src="scripts.js"></script> -->
+    <script src="scripts.js"></script>
 </head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
@@ -24,6 +25,7 @@
             display: none; /* Initially hidden */
         }
 
+
         .popup {
             position: fixed;
             top: 50%;
@@ -36,11 +38,13 @@
             display: none; /* Initially hidden */
         }
 
+
         /* Styles for the popup message */
         .popup h2 {
             font-size: 1.5em;
             margin-bottom: 10px;
         }
+
 
         .popup button {
             padding: 10px 20px;
@@ -51,44 +55,53 @@
             cursor: pointer;
         }
 
+
     body {
         background-color: #171717; /* Black background */
         color: #ffffff; /* White text */
     }
+
 
     header {
         text-align: center;
         margin-bottom: 30px;
     }
 
+
     h1 {
         font-size: 3em; /* BIG Font */
-      
+     
         color: red; /* Red color */
         margin-bottom: 5px; /* Add margin below the header */
     }
+
 
     .card {
         background-color: #171717; /* Black background for cards */
         color: #ffffff; /* White text for cards */
     }
 
+
     .card-header {
         background-color: #171717; /* Black background for card headers */
         border-bottom: none; /* Remove border */
     }
 
+
     .navbar {
         background-color: #000000 !important; /* Black background for navbar */
     }
+
 
     .navbar-light .navbar-nav .nav-link {
         color: #ffffff !important; /* White text for navbar links */
     }
 
+
     .modal-content {
         background-color: #171717; /* Black background for modal content */
     }
+
 
     /* Netflix font for the small text */
     .small-text {
@@ -97,54 +110,225 @@
         color: red; /* Red color */
         text-align: center; /* Center align the text */
     }
+   
+   
 </style>
 </head>
 
+
 <body>
-    <!--Navigation Bar Copied and Pasted From Bootstrap -->
-    <nav class="navbar" style="background-color: #000000;">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#" style="color: red;"  onclick=displayMoviesForPage(1)>GV</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
-                    aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarScroll">
-                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#"  onclick=displayMoviesForPage(1)>Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" onclick=displayMoviesForPage(1)>All Movies</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" onclick=showRecommended(1)>Recommended Movies</a>
-                        </li>
-                        <li>
-                        <div class="dropdown">
-                        <button class="btn btn-link" type="button" data-toggle="dropdown">Account<span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <li><a class="btn btn-link" href="login.html">Login</a></li>
-                            <li><a class="btn btn-link" href="register.html">Register</a></li>
-                            <li><button class="btn btn-link" id="logoutButton" type="button">Logout</button></li>
-                        </ul>
-                    </div>
-                        </li>
-                        <li class="nav-item" id="usernamePlaceholder" style="display: none;">
-                            <span class="nav-link" id="loggedInUsername"></span>
-                        </li>
+  <!--Navigation Bar Copied and Pasted From Bootstrap -->
+  <nav class="navbar" style="background-color: #000000;">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="color: red;"  onclick=displayMoviesForPage(1)>GV</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#"  onclick=displayMoviesForPage(1)>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick=displayMoviesForPage(1)>All Movies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick=showRecommended(1)>Recommended Movies</a>
+                    </li>
+                    <li>
+                    <div class="dropdown">
+                    <button class="btn btn-link" type="button" data-toggle="dropdown">Account<span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a class="btn btn-link" href="login.html">Login</a></li>
+                        <li><a class="btn btn-link" href="register.html">Register</a></li>
+                        <li><button class="btn btn-link" id="logoutButton" type="button">Logout</button></li>
                     </ul>
                 </div>
+                    </li>
+                    <li class="nav-item" id="usernamePlaceholder" style="display: none;">
+                        <span class="nav-link" id="loggedInUsername"></span>
+                    </li>
+                </ul>
             </div>
-        </nav>
+        </div>
     </nav>
-    <header>
-        <h1>Geek Videos</h1>
-      
+</nav>
+<header>
+       
+            <title>Dark Mode and Light Mode</title>
+            <style>
+                /* Default light mode styles */
+                body {
+                    background-color: #ffffff; /* Light background color */
+                    color: #000000; /* Dark text color */
+                }
+       
+                /* Dark mode styles */
+                body.dark-mode {
+                    background-color: #171717; /* Dark background color */
+                    color: #ffffff; /* Light text color */
+                }
+       
+                /* Default light mode styles for cards */
+                .card {
+                    background-color: #ffffff; /* Light background color for cards */
+                    color: #000000; /* Dark text color for cards */
+                }
+       
+                /* Dark mode styles for cards */
+                body.dark-mode .card {
+                    background-color: #171717; /* Dark background color for cards */
+                    color: #ffffff; /* Light text color for cards */
+                }
+       
+                /* Modal styles */
+                .modal-content {
+                    background-color: #ffffff; /* Light background color for modal */
+                    color: #000000; /* Dark text color for modal */
+                }
+       
+                body.dark-mode .modal-content {
+                    background-color: #171717; /* Dark background color for modal in dark mode */
+                    color: #ffffff; /* Light text color for modal in dark mode */
+                }
+
+
+                /* Styles for the header */
+                header {
+                    background-color: #ffffff; /* Light background color for header */
+                    color: #000000; /* Dark text color for header */
+                }
+
+
+                body.dark-mode header {
+                    background-color: #171717; /* Dark background color for header in dark mode */
+                    color: #ffffff; /* Light text color for header in dark mode */
+                }
+            </style>
+        </head>
+        <body>
+            <button onclick="toggleDarkMode()">Light/Dark Mode</button>
+       
+            <!-- Modal for displaying the larger card bootstrap-->
+            <div class="modal fade" id="cardModal" tabindex="-1" role="dialog" aria-labelledby="cardModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <!-- Content goes here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+       
+            <script>
+                // Function to toggle dark mode
+                function toggleDarkMode() {
+                    const body = document.body;
+                    const cards = document.querySelectorAll('.card');
+                    const modalContent = document.querySelector('.modal-content');
+                    const header = document.querySelector('header');
+                    // Toggle dark mode class on the body element
+                    body.classList.toggle('dark-mode');
+                    // Toggle dark mode class on each card element
+                    cards.forEach(card => card.classList.toggle('dark-mode'));
+                    // Toggle dark mode class on the modal content element
+                    modalContent.classList.toggle('dark-mode');
+                    // Toggle dark mode class on the header element
+                    header.classList.toggle('dark-mode');
+                    // Save user preference to local storage
+                    const isDarkMode = body.classList.contains('dark-mode');
+                    localStorage.setItem('darkMode', isDarkMode);
+                }
+       
+                // Check user preference from local storage
+                document.addEventListener('DOMContentLoaded', function() {
+                    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+                    const body = document.body;
+                    const cards = document.querySelectorAll('.card');
+                    const modalContent = document.querySelector('.modal-content');
+                    const header = document.querySelector('header');
+                    // Apply dark mode class if user preference is set
+                    if (isDarkMode) {
+                        body.classList.add('dark-mode');
+                        // Add dark mode class to each card element
+                        cards.forEach(card => card.classList.add('dark-mode'));
+                        // Add dark mode class to modal content element
+                        modalContent.classList.add('dark-mode');
+                        // Add dark mode class to header element
+                        header.classList.add('dark-mode');
+                    }
+                });
+            </script>
+        </body>
+     
+            <title>Cinematic Image</title>
+            <style>
+                /* Container styles */
+                .image-container {
+                    position: relative;
+                    width: 100%;
+                    max-width: 1000px; /* Limiting maximum width */
+                    margin: auto; /* Centering the container */
+                    overflow: hidden; /* Hide overflowing content */
+                    border-radius: 10px; /* Rounded corners */
+                }
+       
+                /* Image styles */
+                .cinematic-image {
+                    width: 100%; /* Ensure image covers container */
+                    height: auto; /* Maintain aspect ratio */
+                    filter: brightness(70%) contrast(120%) grayscale(10%) blur(2px); /* Apply cinematic effect */
+                    transition: filter 0.5s ease; /* Smooth transition on hover */
+                }
+       
+                /* Image hover effect */
+                .cinematic-image:hover {
+                    filter: brightness(100%) contrast(100%) grayscale(0%) blur(0px); /* Remove cinematic effect on hover */
+                }
+       
+                /* Image caption styles */
+                .image-caption {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    padding: 20px;
+                    box-sizing: border-box;
+                    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+                    color: #ffffff; /* White text */
+                    text-align: center;
+                    transition: opacity 0.5s ease; /* Smooth transition on hover */
+                    opacity: 0; /* Initially hidden */
+                }
+       
+                /* Caption hover effect */
+                .image-container:hover .image-caption {
+                    opacity: 1; /* Show caption on hover */
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Geek Videos</h1>
+            <!-- Image container with cinematic effect -->
+            <div class="image-container">
+                <img class="cinematic-image" src="alot.jpg" alt="Princess Fiona" width="1300" height="300">
+                <!-- Image caption -->
+                <div class="image-caption">
+                    Watch Free Movies With Unlimited Categories
+                </div>
+            </div>
+        </body>
+       
+
+
+
+
     </header>
     <!-- Blurred overlay -->
     <div class="overlay" id="overlay"></div>
+
 
     <!-- Popup message -->
     <div class="popup" id="popup">
@@ -159,7 +343,7 @@
                 <button id="nextPageBtn" class="btn btn-primary" onclick="showNextPage()">Next</button>
             </div>
         </div>
-    
+   
         <!-- Character Cards Section -->
         <div class="row row-cols-1 row-cols-md-3 g-4" id="characterCardsContainer" data-display="all">
             <!-- Character Card Displays Here -->
@@ -168,7 +352,7 @@
             <nav class="navbar" style="background-color: #121212;"></nav> <!--A white cube to push down the cards-->
         </div>
     </div>
-    
+   
 <!-- Modal for displaying the larger card bootstrap-->
 <div class="modal fade" id="cardModal" tabindex="-1" role="dialog" aria-labelledby="cardModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -179,6 +363,7 @@
         </div>
     </div>
 </div>
+
 
  <!-- Bootstrap JS Scripts -->
  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -203,8 +388,8 @@
   } else {
     alert("There is something wrong.  Please try again later.");
   }
-
   document.getElementById("star"+rating).checked = true
+
 
   let foundRating = ratings.find(e => e.movie_id == parseInt(movieId))
   if(foundRating){
@@ -214,9 +399,12 @@
   }
   return data;
     }
+
+
     window.addEventListener('DOMContentLoaded', (event) => {
     const isLoggedIn = sessionStorage.getItem('username') !== null; // Check if user is logged in
     const loggedInUsername = sessionStorage.getItem('username'); // Get logged-in username
+
 
     if (isLoggedIn) {
         document.getElementById('usernamePlaceholder').style.display = 'block'; // Show username placeholder
@@ -229,15 +417,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const isLoggedIn = sessionStorage.getItem('username') !== null; // Check if user is logged in
     const loggedInUsername = sessionStorage.getItem('username'); // Get logged-in username
 
+
     if (isLoggedIn) {
         document.getElementById('usernamePlaceholder').style.display = 'block'; // Show username placeholder
-        document.getElementById('loggedInUsername').textContent = "Welcome, " + loggedInUsername; 
+        document.getElementById('loggedInUsername').textContent = "Welcome, " + loggedInUsername;
     } else {
         document.getElementById('usernamePlaceholder').style.display = 'none'; // Hide username placeholder
     }
 });
 
+
  </script>
+
 
       <!-- Script to show popup message -->
       <script>
@@ -253,6 +444,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         });
     </script>
 
+
 <script>
     document.getElementById('logoutButton').addEventListener('click', async function () {
         try {
@@ -262,6 +454,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     'Content-Type': 'application/json'
                 },
             });
+
 
             const data = await response.json();
             if (response.ok) {
@@ -283,7 +476,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
     });
 </script>
 
+
 </body>
+
+
+</html>
+
+
+       
+
+
+
 
 </html>
 
