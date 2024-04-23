@@ -242,7 +242,7 @@
     {
         "movie_id": 41,
         "title": "Awakenings",
-        "genre": "drama, european",
+        "genre": "european",
         "release_year": 1990
     },
     {
@@ -932,7 +932,7 @@
     {
         "movie_id": 156,
         "title": "Children of Shatila",
-        "genre": "documentation, history",
+        "genre": "history",
         "release_year": 1999
     },
     {
@@ -1244,7 +1244,7 @@
     {
         "movie_id": 208,
         "title": "Blow",
-        "genre": "crime, drama",
+        "genre": "crime",
         "release_year": 2001
     },
     {
@@ -2024,7 +2024,7 @@
     {
         "movie_id": 338,
         "title": "Sir! No Sir!",
-        "genre": "war, documentation",
+        "genre": "war",
         "release_year": 2005
     },
     {
@@ -2540,7 +2540,7 @@
     {
         "movie_id": 424,
         "title": "Banyuki",
-        "genre": "drama, action",
+        "genre": "action",
         "release_year": 2009
     },
     {
@@ -4130,7 +4130,7 @@
     {
         "movie_id": 689,
         "title": "Jinxed",
-        "genre": "comedy, family",
+        "genre": "family",
         "release_year": 2013
     },
     {
@@ -9338,7 +9338,7 @@
     {
         "movie_id": 1557,
         "title": "Lucid Dream",
-        "genre": "thriller, scifi",
+        "genre": "scifi",
         "release_year": 2017
     },
     {
@@ -14366,7 +14366,7 @@
     {
         "movie_id": 2395,
         "title": "Go!",
-        "genre": "family, sport",
+        "genre": "sport",
         "release_year": 2020
     },
     {
@@ -14390,7 +14390,7 @@
     {
         "movie_id": 2399,
         "title": "Double World",
-        "genre": "fantasy, action",
+        "genre": "fantasy",
         "release_year": 2020
     },
     {
@@ -22461,108 +22461,6 @@
         "movie_id": 3744,
         "title": "Dad Stop Embarrassing Me - The Afterparty",
         "genre": "",
-        "release_year": 2021
-    },
-    {
-        "movie_id": 3745,
-        "title": "comedy",
-        "genre": "comedy",
-        "release_year": 2021
-    },
-    {
-        "movie_id": 3746,
-        "title": "drama",
-        "genre": "drama",
-        "release_year": 2021
-    },
-    {
-        "movie_id": 3747,
-        "title": "history",
-        "genre": "history",
-        "release_year": 2021
-    },
-    {
-        "movie_id": 3748,
-        "title": "romance",
-        "genre": "romance",
-        "release_year": 2021
-    },
-    {
-        "movie_id": 3749,
-        "title": "crime",
-        "genre": "crime",
-        "release_year": 2021
-    },
-    {
-        "movie_id": 3750,
-        "title": "thriller",
-        "genre": "thriller",
-        "release_year": 2021
-    },
-    {
-        "movie_id": 3751,
-        "title": "music",
-        "genre": "music",
-        "release_year": 2021
-    },
-    {
-        "movie_id": 3752,
-        "title": "documentation",
-        "genre": "documentation",
-        "release_year": 2021
-    },
-    {
-        "movie_id": 3753,
-        "title": "action",
-        "genre": "action",
-        "release_year": 2021
-    },
-    {
-        "movie_id": 3754,
-        "title": "family",
-        "genre": "family",
-        "release_year": 2021
-    },
-    {
-        "movie_id": 3755,
-        "title": "horror",
-        "genre": "horror",
-        "release_year": 2021
-    },
-    {
-        "movie_id": 3756,
-        "title": "sport",
-        "genre": "sport",
-        "release_year": 2021
-    },
-    {
-        "movie_id": 3757,
-        "title": "fantasy",
-        "genre": "fantasy",
-        "release_year": 2021
-    },
-    {
-        "movie_id": 3758,
-        "title": "animation",
-        "genre": "animation",
-        "release_year": 2021
-    },
-    {
-        "movie_id": 3759,
-        "title": "scifi",
-        "genre": "scifi",
-        "release_year": 2021
-    },
-    {
-        "movie_id": 3760,
-        "title": "war",
-        "genre": "war",
-        "release_year": 2021
-    },
-    {
-        "movie_id": 3761,
-        "title": "european",
-        "genre": "european",
         "release_year": 2021
     }
 ]
